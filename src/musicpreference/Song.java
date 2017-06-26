@@ -10,7 +10,7 @@ package musicpreference;
  * @author Bria
  *
  */
-public class Song
+public class Song implements Comparable<Song>
 {
     private String artist;
     private String title;
@@ -134,6 +134,17 @@ public class Song
     public int compareYear(Song song)
     {
         return this.getYear() - song.getYear();
+    }
+
+    public int compareTo(Song song)
+    {
+        if (this.getTitle() != song.getTitle()) {
+            return this.getTitle().compareTo(song.getTitle());
+        }
+        if (this.getArtist() != song.getArtist()){
+            return this.getArtist().compareTo(song.getArtist());
+        }
+        return 0;
     }
 
 }
