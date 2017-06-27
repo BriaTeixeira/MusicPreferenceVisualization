@@ -1,9 +1,4 @@
-/**
- * 
- */
 package musicpreference;
-
-import java.io.FileNotFoundException;
 
 /**
  * Displays the window containing survey results.
@@ -19,13 +14,8 @@ public class ProjectRunner
     @SuppressWarnings("unused")
     public static void main(String[] args)
     {
-        try {
-        ShapeBuilder builder = new ShapeBuilder();
-        DisplayWindow display = new DisplayWindow(builder);
-        }
-        catch (FileNotFoundException e) {
-            System.exit(0);
-        }
+        DisplayWindow display = new DisplayWindow();
+        ShapeBuilder builder = new ShapeBuilder(display);
     }
 
 }
