@@ -29,6 +29,74 @@ public class ShapeBuilder
         survey();
     }
     
+    public void addSong(Song song, int x, int y)
+    {
+        TextShape title = new textShape(song.getTitle());
+        Window.add(title);
+        title.move(x + DisplayWindow.width/2 - box/2, y + DisplayWindow.titleHeight);
+        
+        for (Hobby hobby : Hobby.values())
+        {
+            int i = 0;
+            int length = Song.getHeardRatio(hobby)*Bar.MAX_LENGTH;
+            Bar bar = new Bar(length);
+            Window.add(bar, x - length, y + i*Bar.HEIGHT);
+            i++;
+        }
+        for (Hobby hobby : Hobby.values())
+        {
+            int i = 0;
+            int length = Song.getLikeRatio(hobby)*Bar.MAX_LENGTH;
+            Bar bar = new Bar(length);
+            Window.add(bar, x + DisplayWindow.width, y + i*Bar.HEIGHT);
+            i++;
+        }
+        
+    }
+    
+    public void addAll(int index)
+    {
+        Song[] list = songlist.toArray();
+        int x;
+        int y;
+        for (int i = index; i < index + 9; i++)
+        {
+            if (i<list.length)
+                switch (i)
+                {
+                case 0:
+                    x = DisplayWindow.getWidth()/4;
+                    y = DisplayWindow.getHeight()/4;
+                case 1:
+                    x = 2*DisplayWindow.getWidth()/4;
+                    y = DisplayWindow.getHeight()/4;
+                case 2:
+                    x = 3*DisplayWindow.getWidth()/4;
+                    y = DisplayWindow.getHeight()/4;
+                case 3:
+                    x = DisplayWindow.getWidth()/4;
+                    y = 2*DisplayWindow.getHeight()/4;
+                case 4:
+                    x = 2*DisplayWindow.getWidth()/4;
+                    y = 2*DisplayWindow.getHeight()/4;
+                case 5:
+                    x = 3*DisplayWindow.getWidth()/4;
+                    y = 2*DisplayWindow.getHeight()/4;
+                case 6:
+                    x = DisplayWindow.getWidth()/4;
+                    y = 3*DisplayWindow.getHeight()/4;
+                case 7:
+                    x = 2*DisplayWindow.getWidth()/4;
+                    y = 3*DisplayWindow.getHeight()/4;
+                case 8:
+                    x = 3*DisplayWindow.getWidth()/4;
+                    y = 3*DisplayWindow.getHeight()/4;
+                }
+            addSong(list[i], x, y);
+        }
+        
+    }
+    
     private void survey() throws FileNotFoundException
     {
         File file = new File("MusicSurveyDataSum1Updated");
