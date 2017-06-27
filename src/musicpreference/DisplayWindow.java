@@ -20,6 +20,8 @@ public class DisplayWindow
 {
     private Window window;
     private TextShape legend;
+    private ShapeBuilder builder;
+    private int index;
     
     private Button quitButton;
     private Button nextButton;
@@ -39,34 +41,25 @@ public class DisplayWindow
     private Shape right2;
     private Shape right3;
     
-    private TextShape song1;
-    private TextShape song2;
-    private TextShape song3;
-    private TextShape song5;
-    private TextShape song6;
-    private TextShape song7;
-    private TextShape song8;
-    private TextShape song9;
-    
     /**
      * Create a new DisplayWindow determined by a list of songs.
      * @param builder A ShapeBuilder object.
      */
-    public DisplayWindow(ShapeBuilder builder)
+    public DisplayWindow()
     {
-        window = new Window("Music Preferences");
+        window = new Window("Project 5");
         
-        int xInc = window.getWidth() / 4;
+        int xInc = window.getWidth() / 6;
         int yInc = window.getHeight() / 4;
-        left1 = new Shape(xInc, yInc, 3, 50, Color.BLACK);
-        left2 = new Shape(xInc, 2*yInc, 3, 50, Color.BLACK);
-        left3 = new Shape(xInc, 3*yInc, 3, 50, Color.BLACK);
-        mid1 = new Shape(2*xInc, yInc, 3, 50, Color.BLACK);
-        mid2 = new Shape(2*xInc, 2*yInc, 3, 50, Color.BLACK);
-        mid3 = new Shape(2*xInc, 3*yInc, 3, 50, Color.BLACK);
-        right1 = new Shape(3*xInc, yInc, 3, 50, Color.BLACK);
-        right2 = new Shape(3*xInc, 2*yInc, 3, 50, Color.BLACK);
-        right3 = new Shape(3*xInc, 3*yInc, 3, 50, Color.BLACK);
+        left1 = new Shape(xInc, yInc, 5, 40, Color.BLACK);
+        left2 = new Shape(xInc, 2*yInc, 5, 40, Color.BLACK);
+        left3 = new Shape(xInc, 3*yInc, 5, 40, Color.BLACK);
+        mid1 = new Shape(3*xInc, yInc, 5, 40, Color.BLACK);
+        mid2 = new Shape(3*xInc, 2*yInc, 5, 40, Color.BLACK);
+        mid3 = new Shape(3*xInc, 3*yInc, 5, 40, Color.BLACK);
+        right1 = new Shape(5*xInc, yInc, 5, 40, Color.BLACK);
+        right2 = new Shape(5*xInc, 2*yInc, 5, 40, Color.BLACK);
+        right3 = new Shape(5*xInc, 3*yInc, 5, 40, Color.BLACK);
         
         window.addShape(left1);
         window.addShape(left2);
@@ -87,6 +80,7 @@ public class DisplayWindow
         Button sortGenre = new Button("Sort By Genre");
         
         window.addButton(quitButton, WindowSide.SOUTH);
+        quitButton.onClick(this, "clickedQuit");
         window.addButton(prevButton, WindowSide.NORTH);
         window.addButton(sortArtist, WindowSide.NORTH);
         window.addButton(sortTitle, WindowSide.NORTH);
@@ -94,12 +88,92 @@ public class DisplayWindow
         window.addButton(sortGenre, WindowSide.NORTH);
         window.addButton(nextButton, WindowSide.NORTH);
         
-        legend = new TextShape(4*xInc, window.getHeight() / 2, "Hobby Legend", Color.BLACK);
+        legend = new TextShape(6*xInc, window.getHeight() / 2, 
+                "Hobby Legend", Color.BLACK);
         legend.setBackgroundColor(Color.WHITE);
         window.addShape(legend);
         
+        index = 0;
+        builder.addAll(index);
+        
     }
     
-
+    // --------------------------------------------------------------
+    
+    /**
+     * Exit the system when the quit button is clicked.
+     */
+    public void clickedQuit(Button button)
+    {
+        System.exit(0);
+    }
+    
+    /**
+     * Gets the next nine songs in the SongList and displays
+     * glyphs representing the corresponding data. If less than
+     * nine songs remain in the list only the information for 
+     * the remaining songs are displayed.
+     */
+    public void clickedNext()
+    {
+        builder.addAll(index + 9);
+        index += 9;
+    }
+    
+    /**
+     * Gets the previous nine songs in the SongList and 
+     * displays glyphs representing the corresponding data.
+     */
+    public void clickedPrev()
+    {
+        builder.addAll(index - 9);
+        index -= 9;
+    }
+    
+    /**
+     * Sorts the SongList by Artist and then displays the
+     * data or the first nine songs in the sorted list.
+     */
+    public void clickedSortArtist()
+    {
+        builder.getList().sortArtist();
+        builder.setList(builder.getList());
+        builder.addAll(0);
+    }
+    
+    /**
+     * Sorts the SongList by Title and then displays the
+     * data or the first nine songs in the sorted list.
+     */
+    public void clickedSortTitle()
+    {
+        builder.getList().sortTitle();
+        builder.setList(builder.getList());
+        builder.addAll(0);
+    }
+    
+    /**
+     * Sorts the SongList by Year and then displays the
+     * data or the first nine songs in the sorted list.
+     */
+    public void clickedSortYear()
+    {
+        builder.getList().sortYear();
+        builder.setList(builder.getList());
+        builder.addAll(0);
+    }
+    
+    /**
+     * Sorts the SongList by Genre and then displays the
+     * data or the first nine songs in the sorted list.
+     */
+    public void clickedSortGenre()
+    {
+        builder.getList().sortGenre();
+        builder.setList(builder.getList());
+        builder.addAll(0);
+    }
+    
 }
+
 
