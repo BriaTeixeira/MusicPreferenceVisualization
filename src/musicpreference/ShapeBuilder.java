@@ -7,6 +7,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import CS2114.Shape;
+import CS2114.SquareShape;
+import CS2114.TextShape;
+import CS2114.Window;
 
 /**
  * @author Bria
@@ -14,36 +18,45 @@ import java.util.Scanner;
  */
 public class ShapeBuilder
 {
+    private Window window;
     
     /**
      * Create a new ShapeBuilder object
      */
-    public ShapeBuilder() throws FileNotFoundException
-    { 
+    public ShapeBuilder(Window window) throws FileNotFoundException
+    {
+        this.window = window;
         songs();
         survey();
     }
     
     public void addSong(Song song, int x, int y)
     {
-        TextShape title = new textShape(song.getTitle());
-        Window.add(title);
-        title.move(x + DisplayWindow.width/2 - box/2, y + DisplayWindow.titleHeight);
+        /*
+         * need constant for central bar width
+         * need constant for bar height
+         * " text shape width, height
+         */
+        TextShape title = new TextShape(0, 0, song.getTitle());
+        window.add(title);
+        title.moveTo(x + DisplayWindow.width/2 - box/2, y + DisplayWindow.titleHeight);
         
         for (Hobby hobby : Hobby.values())
         {
             int i = 0;
-            int length = Song.getHeardRatio(hobby)*Bar.MAX_LENGTH;
+            int length = Song.getHeardRatio(hobby)*Bar.LENGTH;
             Bar bar = new Bar(length);
-            Window.add(bar, x - length, y + i*Bar.HEIGHT);
+            window.add(bar) 
+                    x - length, y + i*Bar.HEIGHT);
             i++;
         }
         for (Hobby hobby : Hobby.values())
         {
             int i = 0;
-            int length = Song.getLikeRatio(hobby)*Bar.MAX_LENGTH;
+            int length = getLikeRatio(song, hobby)*Bar.LENGTH;
             Bar bar = new Bar(length);
-            Window.add(bar, x + DisplayWindow.width, y + i*Bar.HEIGHT);
+            bar.moveTo(x + DisplayWindow.CENTER_WIDTH, y + i*Bar.HEIGHT);
+            DisplayWindow.add(bar);
             i++;
         }
         
@@ -212,7 +225,7 @@ public class ShapeBuilder
             if (temp.size() == 4 && proceed)
             {
                 column++;
-                SongList.add(new Song(temp.get(0), temp.get(1), temp.get(2), temp.get(3), column);
+                songList.add(new Song(temp.get(0), temp.get(1), temp.get(2), temp.get(3), column);
             }
         }
         scanner.close();

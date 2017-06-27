@@ -41,6 +41,9 @@ public class DisplayWindow
     private Shape right2;
     private Shape right3;
     
+    public static final int CENTER_WIDTH = 5;
+    public static final int CENTER_HEIGHT = 40;
+    
     /**
      * Create a new DisplayWindow determined by a list of songs.
      * @param builder A ShapeBuilder object.

@@ -15,7 +15,7 @@ public class Song implements Comparable<Song>
     private String artist;
     private String title;
     private String genre;
-    private String year;
+    private int year;
     private final int column;
     
     /**
@@ -31,7 +31,7 @@ public class Song implements Comparable<Song>
      * @param col The column we want the data to be stored in.
      */
     public Song(String title, String artist, String genre,
-            String year, int col)
+            int year, int col)
     {
         this.title = title;
         this.artist = artist;
@@ -83,7 +83,7 @@ public class Song implements Comparable<Song>
      * Get the song's release year.
      * @return an integer representing the song's release year.
      */
-    public String getYear()
+    public int getYear()
     {
         return year;
     }
@@ -133,7 +133,7 @@ public class Song implements Comparable<Song>
      */
     public int compareYear(Song song)
     {
-        return this.getYear().compareTo(song.getYear());
+        return (this.getYear() - song.getYear());
     }
 
     /**
