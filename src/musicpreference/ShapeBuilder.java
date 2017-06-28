@@ -192,8 +192,8 @@ public class ShapeBuilder
     
             if (temp.size() == 4 && proceed)
             {
-                column++;
                 songList.add(new Song(temp.get(0), temp.get(1), temp.get(2), temp.get(3), column);
+                column++;
             }
         }
         count = new int[16][column+1];
