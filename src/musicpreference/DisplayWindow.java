@@ -55,15 +55,15 @@ public class DisplayWindow
         
         int xInc = window.getWidth() / 6;
         int yInc = window.getHeight() / 4;
-        left1 = new Shape(xInc, yInc, CENTER_WIDTH, CENTER_HEIGHT, Color.BLACK);
-        left2 = new Shape(xInc, 2*yInc, CENTER_WIDTH, CENTER_HEIGHT, Color.BLACK);
-        left3 = new Shape(xInc, 3*yInc, CENTER_WIDTH, CENTER_HEIGHT, Color.BLACK);
-        mid1 = new Shape(3*xInc, yInc, CENTER_WIDTH, CENTER_HEIGHT, Color.BLACK);
-        mid2 = new Shape(3*xInc, 2*yInc, CENTER_WIDTH, CENTER_HEIGHT, Color.BLACK);
-        mid3 = new Shape(3*xInc, 3*yInc, CENTER_WIDTH, CENTER_HEIGHT, Color.BLACK);
-        right1 = new Shape(5*xInc, yInc, CENTER_WIDTH, CENTER_HEIGHT, Color.BLACK);
-        right2 = new Shape(5*xInc, 2*yInc, CENTER_WIDTH, CENTER_HEIGHT, Color.BLACK);
-        right3 = new Shape(5*xInc, 3*yInc, CENTER_WIDTH, CENTER_HEIGHT, Color.BLACK);
+        left1 = new Shape(xInc, yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
+        left2 = new Shape(xInc, 2*yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
+        left3 = new Shape(xInc, 3*yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
+        mid1 = new Shape(3*xInc, yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
+        mid2 = new Shape(3*xInc, 2*yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
+        mid3 = new Shape(3*xInc, 3*yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
+        right1 = new Shape(5*xInc, yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
+        right2 = new Shape(5*xInc, 2*yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
+        right3 = new Shape(5*xInc, 3*yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
         
         window.addShape(left1);
         window.addShape(left2);
