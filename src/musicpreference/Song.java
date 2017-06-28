@@ -83,7 +83,7 @@ public class Song implements Comparable<Song>
      * Get the song's release year.
      * @return an integer representing the song's release year.
      */
-    public int getYear()
+    public String getYear()
     {
         return year;
     }
@@ -133,7 +133,7 @@ public class Song implements Comparable<Song>
      */
     public int compareYear(Song song)
     {
-        return (this.getYear() - song.getYear());
+        return this.getYear().compareTo(song.getYear());
     }
 
     /**
