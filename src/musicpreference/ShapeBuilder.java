@@ -237,6 +237,10 @@ public class ShapeBuilder
         int row = 0;
         boolean proceed;
         String hobby;
+        String discard;
+        
+        discard = scanner.nextLine();
+        discard = scanner.nextLine();
 
         while (scanner.hasNextLine())
         {

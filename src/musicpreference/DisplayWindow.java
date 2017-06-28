@@ -16,7 +16,7 @@ import CS2114.WindowSide;
  * @author Bria
  *
  */
-public class DisplayWindow
+public class DisplayWindow 
 {
     private Window window;
     private TextShape legend;

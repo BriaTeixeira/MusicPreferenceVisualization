@@ -4,5 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/CS2114-Support"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GraphWindowLib"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CarranoDataStructuresLib"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
