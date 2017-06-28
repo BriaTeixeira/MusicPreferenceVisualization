@@ -18,7 +18,9 @@ import CS2114.Window;
  */
 public class ShapeBuilder
 {
+    private SongList songList;
     private Window window;
+    private int[][] count;
     
     /**
      * Create a new ShapeBuilder object
@@ -32,11 +34,6 @@ public class ShapeBuilder
     
     public void addSong(Song song, int x, int y)
     {
-        /*
-         * need constant for central bar width
-         * need constant for bar height
-         * " text shape width, height
-         */
         TextShape title = new TextShape(0, 0, song.getTitle());
         window.addShape(title);
         title.moveTo(x + DisplayWindow.C_WIDTH/2 - DisplayWindow.T_WIDTH/2, y + DisplayWindow.T_HEIGHT);
@@ -44,16 +41,16 @@ public class ShapeBuilder
         for (Hobby hobby : Hobby.values())
         {
             int i = 0;
-            int length = Song.getHeardRatio(hobby)*Bar.LENGTH;
+            int length = Song.getHeardRatio(hobby)*Bar.MAX_LENGTH;
             Bar bar = new Bar(length);
-            window.add(bar) 
-                    x - length, y + i*Bar.HEIGHT);
+            bar.moveTo(x - length, y + i*Bar.HEIGHT);
+            window.addShape(bar); 
             i++;
         }
         for (Hobby hobby : Hobby.values())
         {
             int i = 0;
-            int length = getLikeRatio(song, hobby)*Bar.LENGTH;
+            int length = getLikeRatio(song, hobby)*Bar.MAX_LENGTH;
             Bar bar = new Bar(length);
             bar.moveTo(x + DisplayWindow.C_WIDTH, y + i*Bar.HEIGHT);
             window.addShape(bar);
@@ -103,6 +100,45 @@ public class ShapeBuilder
             addSong(list[i], x, y);
         }
         
+    }
+    
+    private void songs() throws FileNotFoundException
+    {
+        File file = new File("SongList.csv");
+        Scanner scanner = new Scanner(file);
+        Scanner line = null;
+        boolean proceed;
+        int column = 0;
+    
+        while (scanner.hasNextLine())
+        {
+            proceed = true;
+            line = new Scanner(scanner.nextLine());
+            line.useDelimiter(",");
+            ArrayList<String> temp = new ArrayList<String>();
+    
+            while (line.hasNext())
+            {    
+                temp.add(line.next());
+            }
+            
+            for (String string : temp)
+            {
+                if (string.trim().isEmpty())
+                {
+                    proceed = false;
+                }
+            }
+    
+            if (temp.size() == 4 && proceed)
+            {
+                column++;
+                songList.add(new Song(temp.get(0), temp.get(1), temp.get(2), temp.get(3), column);
+            }
+        }
+        count = new int[16][column+1];
+        scanner.close();
+        line.close();
     }
     
     private void survey() throws FileNotFoundException
@@ -193,42 +229,4 @@ public class ShapeBuilder
         scanner.close();
         line.close();
      }
-    
-    private void songs() throws FileNotFoundException
-    {
-        File file = new File("SongList.csv");
-        Scanner scanner = new Scanner(file);
-        Scanner line = null;
-        boolean proceed;
-        int column = 0;
-    
-        while (scanner.hasNextLine())
-        {
-            proceed = true;
-            line = new Scanner(scanner.nextLine());
-            line.useDelimiter(",");
-            ArrayList<String> temp = new ArrayList<String>();
-    
-            while (line.hasNext())
-            {    
-                temp.add(line.next());
-            }
-            
-            for (String string : temp)
-            {
-                if (string.trim().isEmpty())
-                {
-                    proceed = false;
-                }
-            }
-    
-            if (temp.size() == 4 && proceed)
-            {
-                column++;
-                songList.add(new Song(temp.get(0), temp.get(1), temp.get(2), temp.get(3), column);
-            }
-        }
-        scanner.close();
-        line.close();
-    }
 }
