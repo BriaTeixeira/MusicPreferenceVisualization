@@ -37,6 +37,12 @@ public class ShapeBuilder
         }
     }
     
+    /**
+     * Get the ratio of those who have heard the song to 
+     * the number of students counted for the survey.
+     * @param hobby Which hobby the data should contribute to
+     * @param song The song we are getting the ratio for
+     */
     private double getHeardRatio(Hobby hobby, Song song)
     {
         int row;
@@ -46,11 +52,16 @@ public class ShapeBuilder
             case SPORTS: row = 8;
             case MUSIC: row = 12;
         }
-        return 0.0;
         return (double)count[row][song.getCol()] / 
             (count[row][song.getCol()] + count[row + 1][song.getCol()]);
     }
     
+    /**
+     * Get the ratio of those who like the song to 
+     * the number of students counted for the survey.
+     * @param hobby Which hobby the data should contribute to
+     * @param song The song we are getting the ratio for
+     */
     private double getLikeRatio(Hobby hobby, Song song)
     {
         int row;
@@ -60,7 +71,6 @@ public class ShapeBuilder
             case SPORTS: row = 8;
             case MUSIC: row = 12;
         }
-        return 0.0;
         return count[row+2][song.getCol()] / 
             (count[row+2][song.getCol()] + count[row + 3][song.getCol()]);
         
@@ -134,6 +144,22 @@ public class ShapeBuilder
             addSong(list[i], x, y);
         }
         
+    }
+    
+    /**
+     * Get the SongList object stored in this class
+     */
+    public SongList getList()
+    {
+        return songs;
+    }
+    
+    /**
+     * Provides the ability to set the order of the list
+     */
+    public void setList(SongList list)
+    {
+        songs = list;
     }
     
     private void songs() throws FileNotFoundException
