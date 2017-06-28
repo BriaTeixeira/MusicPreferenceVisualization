@@ -25,7 +25,7 @@ public class ShapeBuilder
     /**
      * Create a new ShapeBuilder object
      */
-    public ShapeBuilder(Window window)
+    public ShapeBuilder(DisplayWindow window)
     {
         this.window = window;
         try {
