@@ -21,11 +21,11 @@ public class SongListTest extends TestCase
     public void setUp()
     {
         test = new SongList();
-        song1 = new Song("ATitle", "AArtist", "AGenre", 1980, 0);
-        song2 = new Song("CTitle", "CArtist", "CGenre", 1990, 0);
-        song3 = new Song("BTitle", "BArtist", "BGenre", 1970, 0);
-        song4 = new Song("ETitle", "EArtist", "EGenre", 2000, 0);
-        song5 = new Song("DTitle", "DArtist", "DGenre", 1900, 0);
+        song1 = new Song("ATitle", "AArtist", "AGenre", "1980", 0);
+        song2 = new Song("CTitle", "CArtist", "CGenre", "1990", 0);
+        song3 = new Song("BTitle", "BArtist", "BGenre", "1970", 0);
+        song4 = new Song("ETitle", "EArtist", "EGenre", "2000", 0);
+        song5 = new Song("DTitle", "DArtist", "DGenre", "1900", 0);
         test.add(song1);
         test.add(song2);
         test.add(song3);
@@ -74,11 +74,11 @@ public class SongListTest extends TestCase
     public void testSortYear()
     {
         test.sortYear();
-        assertEquals(1900, test.getEntry(0).getYear());
-        assertEquals(1970, test.getEntry(1).getYear());
-        assertEquals(1980, test.getEntry(2).getYear());
-        assertEquals(1990, test.getEntry(3).getYear());
-        assertEquals(2000, test.getEntry(4).getYear());
+        assertEquals("1900", test.getEntry(0).getYear());
+        assertEquals("1970", test.getEntry(1).getYear());
+        assertEquals("1980", test.getEntry(2).getYear());
+        assertEquals("1990", test.getEntry(3).getYear());
+        assertEquals("2000", test.getEntry(4).getYear());
     }
     
 }
