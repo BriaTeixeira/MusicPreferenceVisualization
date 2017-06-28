@@ -86,7 +86,7 @@ public class ShapeBuilder
         {
             int i = 0;
             double length = Song.getHeardRatio(hobby, song)*Bar.MAX_LENGTH;
-            Bar bar = new Bar(length);
+            Bar bar = new Bar((int)length);
             bar.moveTo(x - length, y + i*Bar.HEIGHT);
             window.addShape(bar); 
             i++;
@@ -95,7 +95,7 @@ public class ShapeBuilder
         {
             int i = 0;
             double length = getLikeRatio(hobby, song)*Bar.MAX_LENGTH;
-            Bar bar = new Bar(length);
+            Bar bar = new Bar((int)length);
             bar.moveTo(x + DisplayWindow.C_WIDTH, y + i*Bar.HEIGHT);
             window.addShape(bar);
             i++;
