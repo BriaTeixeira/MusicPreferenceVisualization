@@ -19,7 +19,7 @@ import CS2114.Window;
 public class ShapeBuilder
 {
     private SongList songList;
-    private Window window;
+    private DisplayWindow window;
     private int[][] count;
     
     /**
