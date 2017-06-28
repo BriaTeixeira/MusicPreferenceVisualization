@@ -80,5 +80,17 @@ public class SongListTest extends TestCase
         assertEquals("1990", test.getEntry(3).getYear());
         assertEquals("2000", test.getEntry(4).getYear());
     }
+    /**
+     * test toArray method
+     */
+    public void testToArray()
+    {
+        Object[] array = test.toArray();
+        assertEquals(test.getEntry(0),array[0]);
+        assertEquals(test.getEntry(1), array[1]);
+        assertEquals(test.getEntry(2), array[2]);
+        assertEquals(test.getEntry(3), array[3]);
+        assertEquals(test.getEntry(4), array[4]);
+    }
     
 }

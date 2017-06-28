@@ -16,7 +16,20 @@ public class SongList extends LinkedList<Song>
     {
         super();
     }
-
+    /**
+     * toarray method
+     * @return object array which contains song object
+     */
+    @Override
+    public Object[] toArray()
+    {   
+        Object[] array = new Object[this.getLength()];
+        for (int i = 0; i < this.getLength(); i++)
+        {
+            array[i] = this.getEntry(i);
+        }
+        return array;
+    }
     /**
      * sort by title
      */
