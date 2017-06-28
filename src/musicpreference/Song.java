@@ -38,7 +38,7 @@ public class Song implements Comparable<Song>
         this.genre = genre;
         this.year = year;
         
-        column = col; // Find a way to determine column number
+        column = col;
     }
     
     // ----------------------------------------------------------------
