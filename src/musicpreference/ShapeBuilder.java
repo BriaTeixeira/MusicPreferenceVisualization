@@ -25,7 +25,7 @@ public class ShapeBuilder
     /**
      * Create a new ShapeBuilder object
      */
-    public ShapeBuilder(Window window) throws FileNotFoundException
+    public ShapeBuilder(Window window)
     {
         this.window = window;
         try {
