@@ -123,7 +123,7 @@ public class ShapeBuilder
     
     public void addAll(int index)
     {
-        Song[] list = songList.toArray();
+        Song[] list = (Song[]) songList.toArray();
         int x;
         int y;
         for (int i = index; i < index + 9; i++)
@@ -161,7 +161,7 @@ public class ShapeBuilder
                     x = 3*window.getWidth()/6;
                     y = 3*window.getHeight()/4;
                 }
-                else if (i%9 == 8) {
+                else {
                     x = 5*window.getWidth()/6;
                     y = 3*window.getHeight()/4;
                 }
