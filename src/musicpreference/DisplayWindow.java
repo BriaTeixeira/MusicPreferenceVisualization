@@ -105,6 +105,7 @@ public class DisplayWindow
         
         index = 0;
         builder.addAll(index);
+        prevButton.disable();
         
     }
     
@@ -128,6 +129,11 @@ public class DisplayWindow
     {
         builder.addAll(index + 9);
         index += 9;
+        prevButton.enable();
+        
+        if (index >= builder.getList().getLength() - 9) {
+            nextButton.disable();
+        }
     }
     
     /**
@@ -138,6 +144,11 @@ public class DisplayWindow
     {
         builder.addAll(index - 9);
         index -= 9;
+        nextButton.enable();
+        
+        if (index < 9) {
+            prevButton.disable();
+        }
     }
     
     /**
