@@ -138,7 +138,7 @@ public class ShapeBuilder
     
     private void songs() throws FileNotFoundException
     {
-        File file = new File("SongList.csv");
+        File file = new File("SongList2017S.csv");
         Scanner scanner = new Scanner(file);
         Scanner line = null;
         boolean proceed;
@@ -177,7 +177,7 @@ public class ShapeBuilder
     
     private void survey() throws FileNotFoundException
     {
-        File file = new File("MusicSurveyDataSum1Updated");
+        File file = new File("MusicSurveyData2017S.csv");
         Scanner scanner = new Scanner(file);
         Scanner line = null;
         ArrayList<String> temp;
