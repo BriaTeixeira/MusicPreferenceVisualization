@@ -192,7 +192,7 @@ public class ShapeBuilder
     
             if (temp.size() == 4 && proceed)
             {
-                songList.add(new Song(temp.get(0), temp.get(1), temp.get(2), temp.get(3), column);
+                songList.add(new Song(temp.get(0), temp.get(1), temp.get(2), temp.get(3), column));
                 column++;
             }
         }
