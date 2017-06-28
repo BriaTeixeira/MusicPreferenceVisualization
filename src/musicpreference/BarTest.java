@@ -18,9 +18,9 @@ public class BarTest extends TestCase
      */
     public void testBar()
     {
-        bar = new Bar(50.0);
+        bar = new Bar(50);
         
-        assertEquals(50.0, bar.getWidth(), 0.1);
+        assertEquals(50, bar.getWidth());
         assertEquals(25, bar.getHeight());
     }
     
