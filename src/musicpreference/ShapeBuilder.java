@@ -38,8 +38,8 @@ public class ShapeBuilder
          * " text shape width, height
          */
         TextShape title = new TextShape(0, 0, song.getTitle());
-        window.add(title);
-        title.moveTo(x + DisplayWindow.width/2 - box/2, y + DisplayWindow.titleHeight);
+        window.addShape(title);
+        title.moveTo(x + DisplayWindow.C_WIDTH/2 - DisplayWindow.T_WIDTH/2, y + DisplayWindow.T_HEIGHT);
         
         for (Hobby hobby : Hobby.values())
         {
@@ -55,8 +55,8 @@ public class ShapeBuilder
             int i = 0;
             int length = getLikeRatio(song, hobby)*Bar.LENGTH;
             Bar bar = new Bar(length);
-            bar.moveTo(x + DisplayWindow.CENTER_WIDTH, y + i*Bar.HEIGHT);
-            DisplayWindow.add(bar);
+            bar.moveTo(x + DisplayWindow.C_WIDTH, y + i*Bar.HEIGHT);
+            window.addShape(bar);
             i++;
         }
         
