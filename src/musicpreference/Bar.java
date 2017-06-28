@@ -17,7 +17,7 @@ public class Bar extends Shape
      * @param width The width of the bar -> to be determined by 
      * heard/like ratios.
      */
-    public Bar(double width)
+    public Bar(int width)
     {
         super(0, 0, width, HEIGHT);
     }
