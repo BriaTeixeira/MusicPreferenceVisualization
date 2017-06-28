@@ -46,11 +46,17 @@ public class ShapeBuilder
     private double getHeardRatio(Hobby hobby, Song song)
     {
         int row;
-        switch(hobby) {
-            case READ: row = 0;
-            case ART: row = 4;
-            case SPORTS: row = 8;
-            case MUSIC: row = 12;
+        if (hobby == Hobby.READ) {
+            row = 0;
+        }
+        else if (hobby == Hobby.ART){
+            row = 4;
+        }
+        else if (hobby == Hobby.SPORTS){
+            row = 8;
+        }
+        else {
+            row = 12;
         }
         return (double)count[row][song.getCol()] / 
             (count[row][song.getCol()] + count[row + 1][song.getCol()]);
@@ -65,11 +71,23 @@ public class ShapeBuilder
     private double getLikeRatio(Hobby hobby, Song song)
     {
         int row;
-        switch(hobby) {
+        /*switch(hobby) {
             case READ: row = 0;
             case ART: row = 4;
             case SPORTS: row = 8;
             case MUSIC: row = 12;
+        }*/
+        if (hobby == Hobby.READ) {
+            row = 0;
+        }
+        else if (hobby == Hobby.ART){
+            row = 4;
+        }
+        else if (hobby == Hobby.SPORTS){
+            row = 8;
+        }
+        else {
+            row = 12;
         }
         return count[row+2][song.getCol()] / 
             (count[row+2][song.getCol()] + count[row + 3][song.getCol()]);
@@ -85,7 +103,7 @@ public class ShapeBuilder
         for (Hobby hobby : Hobby.values())
         {
             int i = 0;
-            double length = Song.getHeardRatio(hobby, song)*Bar.MAX_LENGTH;
+            double length = getHeardRatio(hobby, song)*Bar.MAX_LENGTH;
             Bar bar = new Bar((int)length);
             bar.moveTo(x - (int)length, y + i*Bar.HEIGHT);
             window.addShape(bar); 
@@ -105,43 +123,50 @@ public class ShapeBuilder
     
     public void addAll(int index)
     {
-        Song[] list = songlist.toArray();
+        Song[] list = songList.toArray();
         int x;
         int y;
         for (int i = index; i < index + 9; i++)
         {
-            if (i<list.length)
-                switch (i)
-                {
-                case 0:
-                    x = DisplayWindow.getWidth()/6;
-                    y = DisplayWindow.getHeight()/4;
-                case 1:
-                    x = 3*DisplayWindow.getWidth()/6;
-                    y = DisplayWindow.getHeight()/4;
-                case 2:
-                    x = 5*DisplayWindow.getWidth()/6;
-                    y = DisplayWindow.getHeight()/4;
-                case 3:
-                    x = DisplayWindow.getWidth()/6;
-                    y = 2*DisplayWindow.getHeight()/4;
-                case 4:
-                    x = 3*DisplayWindow.getWidth()/6;
-                    y = 2*DisplayWindow.getHeight()/4;
-                case 5:
-                    x = 5*DisplayWindow.getWidth()/6;
-                    y = 2*DisplayWindow.getHeight()/4;
-                case 6:
-                    x = DisplayWindow.getWidth()/6;
-                    y = 3*DisplayWindow.getHeight()/4;
-                case 7:
-                    x = 3*DisplayWindow.getWidth()/6;
-                    y = 3*DisplayWindow.getHeight()/4;
-                case 8:
-                    x = 5*DisplayWindow.getWidth()/6;
-                    y = 3*DisplayWindow.getHeight()/4;
+            if (i<list.length) {
+                if (i%9 == 0) {
+                    x = window.getWidth() / 6;
+                    y = window.getHeight() / 4;
                 }
-            addSong(list[i], x, y);
+                else if (i%9 == 1) {
+                    x = 3*window.getWidth()/6;
+                    y = window.getHeight()/4;
+                }
+                else if (i%9 == 2) {
+                    x = 5*window.getWidth()/6;
+                    y = window.getHeight()/4;
+                }
+                else if (i%9 == 3) {
+                    x = window.getWidth()/6;
+                    y = 2*window.getHeight()/4;
+                }
+                else if (i%9 == 4) {
+                    x = 3*window.getWidth()/6;
+                    y = 2*window.getHeight()/4;
+                }
+                else if (i%9 == 5) {
+                    x = 5*window.getWidth()/6;
+                    y = 2*window.getHeight()/4;
+                }
+                else if (i%9 == 6) {
+                    x = window.getWidth()/6;
+                    y = 3*window.getHeight()/4;
+                }
+                else if (i%9 == 7) {
+                    x = 3*window.getWidth()/6;
+                    y = 3*window.getHeight()/4;
+                }
+                else if (i%9 == 8) {
+                    x = 5*window.getWidth()/6;
+                    y = 3*window.getHeight()/4;
+                }
+                addSong(list[i], x, y);
+            }
         }
         
     }
@@ -151,7 +176,7 @@ public class ShapeBuilder
      */
     public SongList getList()
     {
-        return songs;
+        return songList;
     }
     
     /**
@@ -159,7 +184,7 @@ public class ShapeBuilder
      */
     public void setList(SongList list)
     {
-        songs = list;
+        songList = list;
     }
     
     private void songs() throws FileNotFoundException
@@ -209,7 +234,7 @@ public class ShapeBuilder
         ArrayList<String> temp;
         int column;
         int inner;
-        int row;
+        int row = 0;
         boolean proceed;
         String hobby;
 
@@ -234,21 +259,18 @@ public class ShapeBuilder
 
             if (proceed)
             {
-                hobby = temp.get(4);
-                switch (hobby.toLowerCase())
-                {
-                case "reading":
+                hobby = temp.get(4).toLowerCase();
+                if (hobby == "reading") {
                     row = 0;
-                    break;
-                case "art":
+                }
+                else if (hobby == "art") {
                     row = 4;
-                    break;
-                case "sports":
+                }
+                else if (hobby == "sports") {
                     row = 8;
-                    break;
-                case "music":
+                }
+                else if (hobby == "music") {
                     row = 12;
-                    break;
                 }
                 
                 column = 0;
