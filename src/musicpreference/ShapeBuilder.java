@@ -28,11 +28,45 @@ public class ShapeBuilder
     public ShapeBuilder(Window window) throws FileNotFoundException
     {
         this.window = window;
-        songs();
-        survey();
+        try {
+            songs();
+            survey();
+        }
+        catch(Exception e) {
+            System.exit(0);
+        }
     }
     
-    public void addSong(Song song, int x, int y)
+    private double getHeardRatio(Hobby hobby, Song song)
+    {
+        int row;
+        switch(hobby) {
+            case READ: row = 0;
+            case ART: row = 4;
+            case SPORTS: row = 8;
+            case MUSIC: row = 12;
+        }
+        return 0.0;
+        return (double)count[row][song.getCol()] / 
+            (count[row][song.getCol()] + count[row + 1][song.getCol()]);
+    }
+    
+    private double getLikeRatio(Hobby hobby, Song song)
+    {
+        int row;
+        switch(hobby) {
+            case READ: row = 0;
+            case ART: row = 4;
+            case SPORTS: row = 8;
+            case MUSIC: row = 12;
+        }
+        return 0.0;
+        return count[row+2][song.getCol()] / 
+            (count[row+2][song.getCol()] + count[row + 3][song.getCol()]);
+        
+    }
+    
+    private void addSong(Song song, int x, int y)
     {
         TextShape title = new TextShape(0, 0, song.getTitle());
         window.addShape(title);
@@ -70,31 +104,31 @@ public class ShapeBuilder
                 switch (i)
                 {
                 case 0:
-                    x = DisplayWindow.getWidth()/4;
+                    x = DisplayWindow.getWidth()/6;
                     y = DisplayWindow.getHeight()/4;
                 case 1:
-                    x = 2*DisplayWindow.getWidth()/4;
+                    x = 3*DisplayWindow.getWidth()/6;
                     y = DisplayWindow.getHeight()/4;
                 case 2:
-                    x = 3*DisplayWindow.getWidth()/4;
+                    x = 5*DisplayWindow.getWidth()/6;
                     y = DisplayWindow.getHeight()/4;
                 case 3:
-                    x = DisplayWindow.getWidth()/4;
+                    x = DisplayWindow.getWidth()/6;
                     y = 2*DisplayWindow.getHeight()/4;
                 case 4:
-                    x = 2*DisplayWindow.getWidth()/4;
+                    x = 3*DisplayWindow.getWidth()/6;
                     y = 2*DisplayWindow.getHeight()/4;
                 case 5:
-                    x = 3*DisplayWindow.getWidth()/4;
+                    x = 5*DisplayWindow.getWidth()/6;
                     y = 2*DisplayWindow.getHeight()/4;
                 case 6:
-                    x = DisplayWindow.getWidth()/4;
+                    x = DisplayWindow.getWidth()/6;
                     y = 3*DisplayWindow.getHeight()/4;
                 case 7:
-                    x = 2*DisplayWindow.getWidth()/4;
+                    x = 3*DisplayWindow.getWidth()/6;
                     y = 3*DisplayWindow.getHeight()/4;
                 case 8:
-                    x = 3*DisplayWindow.getWidth()/4;
+                    x = 5*DisplayWindow.getWidth()/6;
                     y = 3*DisplayWindow.getHeight()/4;
                 }
             addSong(list[i], x, y);
