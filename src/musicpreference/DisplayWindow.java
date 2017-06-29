@@ -63,7 +63,6 @@ public class DisplayWindow
         nextButton.onClick(this, "clickedNext");
         
         index = 0;
-        builder.addAll(index);
         
     }
     
@@ -161,9 +160,7 @@ public class DisplayWindow
     
     public Window getWindow()
     {
-    	return window;
+        return window;
     }
     
 }
-
-
