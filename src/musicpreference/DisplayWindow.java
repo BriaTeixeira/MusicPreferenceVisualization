@@ -85,9 +85,10 @@ public class DisplayWindow
      */
     public void clickedNext(Button button)
     {
+        window.removeAllShapes();
         builder.addAll(index + 9);
         index += 9;
-        prevButton.enable();
+        //prevButton.enable();
         
         if (index >= builder.getList().getLength() - 9) {
             nextButton.disable();
@@ -100,9 +101,10 @@ public class DisplayWindow
      */
     public void clickedPrev(Button button)
     {
+        window.removeAllShapes();
         builder.addAll(index - 9);
         index -= 9;
-        nextButton.enable();
+        //nextButton.enable();
         
         if (index < 9) {
             prevButton.disable();
@@ -115,6 +117,7 @@ public class DisplayWindow
      */
     public void clickedSortArtist(Button button)
     {
+        window.removeAllShapes();
         builder.getList().sortArtist();
         builder.setList(builder.getList());
         builder.addAll(0);
@@ -126,6 +129,7 @@ public class DisplayWindow
      */
     public void clickedSortTitle(Button button)
     {
+        window.removeAllShapes();
         builder.getList().sortTitle();
         builder.setList(builder.getList());
         builder.addAll(0);
@@ -137,6 +141,7 @@ public class DisplayWindow
      */
     public void clickedSortYear(Button button)
     {
+        window.removeAllShapes();
         builder.getList().sortYear();
         builder.setList(builder.getList());
         builder.addAll(0);
@@ -148,6 +153,7 @@ public class DisplayWindow
      */
     public void clickedSortGenre(Button button)
     {
+        window.removeAllShapes();
         builder.getList().sortGenre();
         builder.setList(builder.getList());
         builder.addAll(0);
