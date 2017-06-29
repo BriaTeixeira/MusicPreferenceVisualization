@@ -21,7 +21,7 @@ public class BarTest extends TestCase
         bar = new Bar(50);
         
         assertEquals(50, bar.getWidth());
-        assertEquals(25, bar.getHeight());
+        assertEquals(10, bar.getHeight());
     }
     
     
