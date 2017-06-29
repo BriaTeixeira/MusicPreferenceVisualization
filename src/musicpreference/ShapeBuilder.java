@@ -27,13 +27,14 @@ public class ShapeBuilder
      */
     public ShapeBuilder(DisplayWindow window)
     {
+    	songList = new SongList();
         this.window = window;
         try {
             songs();
             survey();
         }
-        catch(Exception e) {
-            System.exit(0);
+        catch(FileNotFoundException e) {
+            System.err.println(e.getMessage());
         }
     }
     
@@ -97,7 +98,7 @@ public class ShapeBuilder
     private void addSong(Song song, int x, int y)
     {
         TextShape title = new TextShape(0, 0, song.getTitle());
-        window.addShape(title);
+        window.getWindow().addShape(title);
         title.moveTo(x + DisplayWindow.C_WIDTH/2 - DisplayWindow.T_WIDTH/2, y + DisplayWindow.T_HEIGHT);
         
         for (Hobby hobby : Hobby.values())
@@ -106,7 +107,7 @@ public class ShapeBuilder
             double length = getHeardRatio(hobby, song)*Bar.MAX_LENGTH;
             Bar bar = new Bar((int)length);
             bar.moveTo(x - (int)length, y + i*Bar.HEIGHT);
-            window.addShape(bar); 
+            window.getWindow().addShape(bar); 
             i++;
         }
         for (Hobby hobby : Hobby.values())
@@ -115,7 +116,7 @@ public class ShapeBuilder
             double length = getLikeRatio(hobby, song)*Bar.MAX_LENGTH;
             Bar bar = new Bar((int)length);
             bar.moveTo(x + DisplayWindow.C_WIDTH, y + i*Bar.HEIGHT);
-            window.addShape(bar);
+            window.getWindow().addShape(bar);
             i++;
         }
         
@@ -130,40 +131,40 @@ public class ShapeBuilder
         {
             if (i<list.length) {
                 if (i%9 == 0) {
-                    x = window.getWidth() / 6;
-                    y = window.getHeight() / 4;
+                    x = window.getWindow().getWidth() / 6;
+                    y = window.getWindow().getHeight() / 4;
                 }
                 else if (i%9 == 1) {
-                    x = 3*window.getWidth()/6;
-                    y = window.getHeight()/4;
+                    x = 3*window.getWindow().getWidth()/6;
+                    y = window.getWindow().getHeight()/4;
                 }
                 else if (i%9 == 2) {
-                    x = 5*window.getWidth()/6;
-                    y = window.getHeight()/4;
+                    x = 5*window.getWindow().getWidth()/6;
+                    y = window.getWindow().getHeight()/4;
                 }
                 else if (i%9 == 3) {
-                    x = window.getWidth()/6;
-                    y = 2*window.getHeight()/4;
+                    x = window.getWindow().getWidth()/6;
+                    y = 2*window.getWindow().getHeight()/4;
                 }
                 else if (i%9 == 4) {
-                    x = 3*window.getWidth()/6;
-                    y = 2*window.getHeight()/4;
+                    x = 3*window.getWindow().getWidth()/6;
+                    y = 2*window.getWindow().getHeight()/4;
                 }
                 else if (i%9 == 5) {
-                    x = 5*window.getWidth()/6;
-                    y = 2*window.getHeight()/4;
+                    x = 5*window.getWindow().getWidth()/6;
+                    y = 2*window.getWindow().getHeight()/4;
                 }
                 else if (i%9 == 6) {
-                    x = window.getWidth()/6;
-                    y = 3*window.getHeight()/4;
+                    x = window.getWindow().getWidth()/6;
+                    y = 3*window.getWindow().getHeight()/4;
                 }
                 else if (i%9 == 7) {
-                    x = 3*window.getWidth()/6;
-                    y = 3*window.getHeight()/4;
+                    x = 3*window.getWindow().getWidth()/6;
+                    y = 3*window.getWindow().getHeight()/4;
                 }
                 else {
-                    x = 5*window.getWidth()/6;
-                    y = 3*window.getHeight()/4;
+                    x = 5*window.getWindow().getWidth()/6;
+                    y = 3*window.getWindow().getHeight()/4;
                 }
                 addSong(list[i], x, y);
             }
@@ -194,6 +195,8 @@ public class ShapeBuilder
         Scanner line = null;
         boolean proceed;
         int column = 0;
+        
+        scanner.nextLine();
     
         while (scanner.hasNextLine())
         {
@@ -217,7 +220,8 @@ public class ShapeBuilder
     
             if (temp.size() == 4 && proceed)
             {
-                songList.add(new Song(temp.get(0), temp.get(1), temp.get(2), temp.get(3), column));
+            	Song song = new Song(temp.get(0), temp.get(1), temp.get(2), temp.get(3), column);
+                songList.add(song);
                 column++;
             }
         }
@@ -237,15 +241,15 @@ public class ShapeBuilder
         int row = 0;
         boolean proceed;
         String hobby;
-        String discard;
         
-        discard = scanner.nextLine();
-        discard = scanner.nextLine();
+        scanner.nextLine();
+        scanner.nextLine();
 
         while (scanner.hasNextLine())
         {
             proceed = true;
             line = new Scanner(scanner.nextLine());
+            line.useDelimiter(",");
             temp = new ArrayList<String>();
 
             for (int i = 0; i < 5; i++)
@@ -263,17 +267,17 @@ public class ShapeBuilder
 
             if (proceed)
             {
-                hobby = temp.get(4).toLowerCase();
-                if (hobby == "reading") {
+                hobby = temp.get(4);
+                if (hobby.equalsIgnoreCase("reading")) {
                     row = 0;
                 }
-                else if (hobby == "art") {
+                else if (hobby.equalsIgnoreCase("art")) {
                     row = 4;
                 }
-                else if (hobby == "sports") {
+                else if (hobby.equalsIgnoreCase("sports")) {
                     row = 8;
                 }
-                else if (hobby == "music") {
+                else if (hobby.equalsIgnoreCase("music")) {
                     row = 12;
                 }
                 
@@ -283,24 +287,24 @@ public class ShapeBuilder
                 while (line.hasNext())
                 {
                     String string = line.next();
-                    if (string.equals("yes"))
+                    if (string.equalsIgnoreCase("yes"))
                     {
                         count[row][column]++; // indices of the song class
                                                    // static array
                     }
-                    if (string.equals("no"))
+                    if (string.equalsIgnoreCase("no"))
                     {
                         count[row + 1][column]++;
                     }
                     inner++;
 
                     string = line.next();
-                    if (string.equals("yes"))
+                    if (string.equalsIgnoreCase("yes"))
                     {
                         count[row + 2][column]++; // indices of the song
                                                        // class static array
                     }
-                    if (string.equals("no"))
+                    if (string.equalsIgnoreCase("no"))
                     {
                         count[row + 3][column]++;
                     }

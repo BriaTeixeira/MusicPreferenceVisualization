@@ -30,8 +30,8 @@ public class Song implements Comparable<Song>
      * @param year The year the song was released.
      * @param col The column we want the data to be stored in.
      */
-    public Song(String title, String artist, String genre,
-            String year, int col)
+    public Song(String title, String artist, String year,
+            String genre, int col)
     {
         this.title = title;
         this.artist = artist;

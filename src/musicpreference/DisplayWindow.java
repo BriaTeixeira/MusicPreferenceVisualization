@@ -104,7 +104,7 @@ public class DisplayWindow
         window.addShape(legend);
         
         index = 0;
-        builder.addAll(index);
+        //builder.addAll(index);
         prevButton.disable();
         
     }
@@ -193,6 +193,11 @@ public class DisplayWindow
         builder.getList().sortGenre();
         builder.setList(builder.getList());
         builder.addAll(0);
+    }
+    
+    public Window getWindow()
+    {
+    	return window;
     }
     
 }

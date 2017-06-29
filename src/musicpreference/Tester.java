@@ -9,8 +9,8 @@ public class Tester {
 
 	public static void main(String[] args) throws FileNotFoundException 
 	{
-		 
-		File file = new File("MusicSurveyData2017S.csv");
+		
+		/*File file = new File("MusicSurveyData2017S.csv");
 	        Scanner scanner = new Scanner(file);
 	        Scanner line = null;
 	        ArrayList<String> temp;
@@ -42,8 +42,24 @@ public class Tester {
 	        System.out.println(line.next());
 	        System.out.println(line.next());
 	        System.out.println(line.next());
+	        System.out.println(line.next());*/
+		
+		 File file = new File("SongList2017S.csv");
+	        Scanner scanner = new Scanner(file);
+	        Scanner line = null;
+	        boolean proceed;
+	        int column = 0;
+	        System.out.println(scanner.nextLine());
+	        System.out.println(scanner.nextLine());
+	        
+	        line = new Scanner(scanner.nextLine());
+	        line.useDelimiter(",");
+	        System.out.println(line.next());
+	        System.out.println(line.next());
+	        System.out.println(line.next());
 	        System.out.println(line.next());
 	        
+	      
 	        scanner.close();
 	}
 
