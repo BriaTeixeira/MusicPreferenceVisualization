@@ -72,7 +72,7 @@ public class LinkedList<T extends Comparable<T>> implements ListInterface<T>
         {
             return data;
         }
-    }//end of Node class
+    }
 
     //fields
     private Node<T> head;
@@ -130,7 +130,7 @@ public class LinkedList<T extends Comparable<T>> implements ListInterface<T>
         }
 
         Node<T> nodeAfter;
-        if(index == length)
+        if (index == length)
         {
             nodeAfter = tail;
         }
@@ -171,7 +171,7 @@ public class LinkedList<T extends Comparable<T>> implements ListInterface<T>
      * get the object at the given position
      * @param index where the object is located
      * @return the object at the given position
-     * @throws indexOutOfBoundsException if there is no node 
+     * @throws IndexOutOfBoundsException if there is no node 
      */
     @Override
     public T getEntry(int index)
@@ -210,7 +210,7 @@ public class LinkedList<T extends Comparable<T>> implements ListInterface<T>
             throw new IndexOutOfBoundsException();
         }
         Node<T> current = head.next();
-        for(int i = 0; i < index; i++)
+        for (int i = 0; i < index; i++)
         {
             current = current.next();
         }
@@ -218,15 +218,15 @@ public class LinkedList<T extends Comparable<T>> implements ListInterface<T>
     }
     /**
      * get the last time the given object is in the list
-     * @param obj
+     * @param obj obj to be found
      * @return the last position of it. -1 if it is not in the list
      */
     public int lastIndexOf(T obj)
     {
         Node<T> current = tail.previous();
-        for (int i = getLength()-1; i >= 0; i--)
+        for (int i = getLength() - 1; i >= 0; i--)
         {
-            if(current.getData().equals(obj))
+            if (current.getData().equals(obj))
             {
                 return i;
             }
@@ -334,6 +334,8 @@ public class LinkedList<T extends Comparable<T>> implements ListInterface<T>
     }
     /**
      * swap the two node by index 
+     * @param index1 first index to swap
+     * @param index2 second index to swap
      */
     public void swap(int index1, int index2)
     {
@@ -351,11 +353,11 @@ public class LinkedList<T extends Comparable<T>> implements ListInterface<T>
         {
             for (int i = 1; i < length; i++)
             {
-                for(int j = i ; j > 0 ; j--)
+                for (int j = i ; j > 0 ; j--)
                 {
-                    if (this.getEntry(j).compareTo(this.getEntry(j-1)) < 0)
+                    if (this.getEntry(j).compareTo(this.getEntry(j - 1)) < 0)
                     {
-                        swap(j, j-1);
+                        swap(j, j - 1);
                     }
                 }
             }

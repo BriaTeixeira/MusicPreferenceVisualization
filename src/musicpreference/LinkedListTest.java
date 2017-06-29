@@ -47,8 +47,10 @@ public class LinkedListTest extends TestCase
      */
     public void testAddIndex()
     {
-        list.add(2, "new");
-        assertEquals("{1, 2, new}", list.toString());
+        list.add(1,"new");
+        assertEquals("{1, new, 2}", list.toString());
+        list.add(3, "new");
+        assertEquals("{1, new, 2, new}", list.toString());
         //test IllegalArgumentException
         Exception e = null;
         try {
@@ -156,6 +158,9 @@ public class LinkedListTest extends TestCase
     public void testToString()
     {
         assertEquals("{1, 2}", list.toString());
+        list.remove(0);
+        list.remove(0);
+        assertEquals("{}", list.toString());
     }
     /**
      * test replace method
@@ -214,5 +219,8 @@ public class LinkedListTest extends TestCase
         list.add("C");
         list.insertSort();
         assertEquals("{A, B, C}", list.toString());
+        list.clear();
+        list.add("A");
+        assertEquals("{A}", list.toString());
     }
 }
