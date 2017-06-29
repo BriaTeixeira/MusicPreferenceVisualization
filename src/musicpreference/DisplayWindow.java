@@ -19,7 +19,6 @@ import CS2114.WindowSide;
 public class DisplayWindow 
 {
     private Window window;
-    private TextShape legend;
     private ShapeBuilder builder;
     private int index;
     
