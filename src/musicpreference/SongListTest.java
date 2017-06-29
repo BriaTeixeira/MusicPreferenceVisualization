@@ -7,6 +7,7 @@ import student.TestCase;
 
 /**
  * Test methods implemented in SongList
+ * 
  * @author a0053
  * @author fanyy94
  * @author bria96
@@ -24,17 +25,18 @@ public class SongListTest extends TestCase
     public void setUp()
     {
         test = new SongList();
-        song1 = new Song("ATitle", "AArtist", "AGenre", "1980", 0);
-        song2 = new Song("CTitle", "CArtist", "CGenre", "1990", 0);
-        song3 = new Song("BTitle", "BArtist", "BGenre", "1970", 0);
-        song4 = new Song("ETitle", "EArtist", "EGenre", "2000", 0);
-        song5 = new Song("DTitle", "DArtist", "DGenre", "1900", 0);
+        song1 = new Song("ATitle", "AArtist", "1980", "AGenre", 0);
+        song2 = new Song("CTitle", "CArtist", "1990", "CGenre", 0);
+        song3 = new Song("BTitle", "BArtist", "1970", "BGenre", 0);
+        song4 = new Song("ETitle", "EArtist", "2000", "EGenre", 0);
+        song5 = new Song("DTitle", "DArtist", "1900", "DGenre", 0);
         test.add(song1);
         test.add(song2);
         test.add(song3);
         test.add(song4);
         test.add(song5);
     }
+
     /**
      * test sort by title
      */
@@ -47,6 +49,7 @@ public class SongListTest extends TestCase
         assertEquals("DTitle", test.getEntry(3).getTitle());
         assertEquals("ETitle", test.getEntry(4).getTitle());
     }
+
     /**
      * test sort by artists
      */
@@ -59,6 +62,7 @@ public class SongListTest extends TestCase
         assertEquals("DArtist", test.getEntry(3).getArtist());
         assertEquals("EArtist", test.getEntry(4).getArtist());
     }
+
     /**
      * test sort by Genre
      */
@@ -71,6 +75,7 @@ public class SongListTest extends TestCase
         assertEquals("DGenre", test.getEntry(3).getGenre());
         assertEquals("EGenre", test.getEntry(4).getGenre());
     }
+
     /**
      * test sort by year
      */
@@ -83,18 +88,18 @@ public class SongListTest extends TestCase
         assertEquals("1990", test.getEntry(3).getYear());
         assertEquals("2000", test.getEntry(4).getYear());
     }
-    
+
     /**
      * test toArray method
      */
     public void testToArray()
     {
         Object[] array = test.toArray();
-        assertEquals(test.getEntry(0),array[0]);
+        assertEquals(test.getEntry(0), array[0]);
         assertEquals(test.getEntry(1), array[1]);
         assertEquals(test.getEntry(2), array[2]);
         assertEquals(test.getEntry(3), array[3]);
         assertEquals(test.getEntry(4), array[4]);
     }
-    
+
 }
