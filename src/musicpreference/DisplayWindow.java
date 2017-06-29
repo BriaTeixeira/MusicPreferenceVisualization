@@ -31,20 +31,6 @@ public class DisplayWindow
     private Button sortYear;
     private Button sortGenre;
     
-    private Shape left1;
-    private Shape left2;
-    private Shape left3;
-    private Shape mid1;
-    private Shape mid2;
-    private Shape mid3;
-    private Shape right1;
-    private Shape right2;
-    private Shape right3;
-    
-    public static final int C_WIDTH = 5;
-    public static final int C_HEIGHT = 40;
-    public static final int T_HEIGHT = 20;
-    public static final int T_WIDTH = 20;
     /**
      * Create a new DisplayWindow determined by a list of songs.
      * @param builder A ShapeBuilder object.
@@ -53,28 +39,6 @@ public class DisplayWindow
     {
         window = new Window("Project 5");
         builder = new ShapeBuilder(window);
-        
-        int xInc = window.getWidth() / 6;
-        int yInc = window.getHeight() / 4;
-        left1 = new Shape(xInc, yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
-        left2 = new Shape(xInc, 2*yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
-        left3 = new Shape(xInc, 3*yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
-        mid1 = new Shape(3*xInc, yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
-        mid2 = new Shape(3*xInc, 2*yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
-        mid3 = new Shape(3*xInc, 3*yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
-        right1 = new Shape(5*xInc, yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
-        right2 = new Shape(5*xInc, 2*yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
-        right3 = new Shape(5*xInc, 3*yInc, C_WIDTH, C_HEIGHT, Color.BLACK);
-        
-        window.addShape(left1);
-        window.addShape(left2);
-        window.addShape(left3);
-        window.addShape(mid1);
-        window.addShape(mid2);
-        window.addShape(mid3);
-        window.addShape(right1);
-        window.addShape(right2);
-        window.addShape(right3);
         
         Button quitButton = new Button("Quit");
         Button nextButton = new Button("Next ->");
@@ -99,14 +63,8 @@ public class DisplayWindow
         window.addButton(nextButton, WindowSide.NORTH);
         nextButton.onClick(this, "clickedNext");
         
-        legend = new TextShape(6*xInc, window.getHeight() / 2, 
-                "Hobby Legend", Color.BLACK);
-        legend.setBackgroundColor(Color.WHITE);
-        window.addShape(legend);
-        
         index = 0;
         builder.addAll(index);
-        prevButton.disable();
         
     }
     
