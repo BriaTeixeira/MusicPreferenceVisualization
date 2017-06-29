@@ -52,6 +52,7 @@ public class DisplayWindow
     public DisplayWindow()
     {
         window = new Window("Project 5");
+        builder = new ShapeBuilder(window);
         
         int xInc = window.getWidth() / 6;
         int yInc = window.getHeight() / 4;
@@ -104,7 +105,7 @@ public class DisplayWindow
         window.addShape(legend);
         
         index = 0;
-        //builder.addAll(index);
+        builder.addAll(index);
         prevButton.disable();
         
     }

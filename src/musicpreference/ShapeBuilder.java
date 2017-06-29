@@ -19,13 +19,13 @@ import CS2114.Window;
 public class ShapeBuilder
 {
     private SongList songList;
-    private DisplayWindow window;
+    private Window window;
     private int[][] count;
     
     /**
      * Create a new ShapeBuilder object
      */
-    public ShapeBuilder(DisplayWindow window)
+    public ShapeBuilder(Window window)
     {
     	songList = new SongList();
         this.window = window;
@@ -98,7 +98,7 @@ public class ShapeBuilder
     private void addSong(Song song, int x, int y)
     {
         TextShape title = new TextShape(0, 0, song.getTitle());
-        window.getWindow().addShape(title);
+        window.addShape(title);
         title.moveTo(x + DisplayWindow.C_WIDTH/2 - DisplayWindow.T_WIDTH/2, y + DisplayWindow.T_HEIGHT);
         
         for (Hobby hobby : Hobby.values())
@@ -107,7 +107,7 @@ public class ShapeBuilder
             double length = getHeardRatio(hobby, song)*Bar.MAX_LENGTH;
             Bar bar = new Bar((int)length);
             bar.moveTo(x - (int)length, y + i*Bar.HEIGHT);
-            window.getWindow().addShape(bar); 
+            window.addShape(bar); 
             i++;
         }
         for (Hobby hobby : Hobby.values())
@@ -116,7 +116,7 @@ public class ShapeBuilder
             double length = getLikeRatio(hobby, song)*Bar.MAX_LENGTH;
             Bar bar = new Bar((int)length);
             bar.moveTo(x + DisplayWindow.C_WIDTH, y + i*Bar.HEIGHT);
-            window.getWindow().addShape(bar);
+            window.addShape(bar);
             i++;
         }
         
@@ -124,49 +124,49 @@ public class ShapeBuilder
     
     public void addAll(int index)
     {
-        Song[] list = (Song[]) songList.toArray();
+        Object[] list = songList.toArray();
         int x;
         int y;
         for (int i = index; i < index + 9; i++)
         {
             if (i<list.length) {
                 if (i%9 == 0) {
-                    x = window.getWindow().getWidth() / 6;
-                    y = window.getWindow().getHeight() / 4;
+                    x = window.getWidth() / 6;
+                    y = window.getHeight() / 4;
                 }
                 else if (i%9 == 1) {
-                    x = 3*window.getWindow().getWidth()/6;
-                    y = window.getWindow().getHeight()/4;
+                    x = 3*window.getWidth()/6;
+                    y = window.getHeight()/4;
                 }
                 else if (i%9 == 2) {
-                    x = 5*window.getWindow().getWidth()/6;
-                    y = window.getWindow().getHeight()/4;
+                    x = 5*window.getWidth()/6;
+                    y = window.getHeight()/4;
                 }
                 else if (i%9 == 3) {
-                    x = window.getWindow().getWidth()/6;
-                    y = 2*window.getWindow().getHeight()/4;
+                    x = window.getWidth()/6;
+                    y = 2*window.getHeight()/4;
                 }
                 else if (i%9 == 4) {
-                    x = 3*window.getWindow().getWidth()/6;
-                    y = 2*window.getWindow().getHeight()/4;
+                    x = 3*window.getWidth()/6;
+                    y = 2*window.getHeight()/4;
                 }
                 else if (i%9 == 5) {
-                    x = 5*window.getWindow().getWidth()/6;
-                    y = 2*window.getWindow().getHeight()/4;
+                    x = 5*window.getWidth()/6;
+                    y = 2*window.getHeight()/4;
                 }
                 else if (i%9 == 6) {
-                    x = window.getWindow().getWidth()/6;
-                    y = 3*window.getWindow().getHeight()/4;
+                    x = window.getWidth()/6;
+                    y = 3*window.getHeight()/4;
                 }
                 else if (i%9 == 7) {
-                    x = 3*window.getWindow().getWidth()/6;
-                    y = 3*window.getWindow().getHeight()/4;
+                    x = 3*window.getWidth()/6;
+                    y = 3*window.getHeight()/4;
                 }
                 else {
-                    x = 5*window.getWindow().getWidth()/6;
-                    y = 3*window.getWindow().getHeight()/4;
+                    x = 5*window.getWidth()/6;
+                    y = 3*window.getHeight()/4;
                 }
-                addSong(list[i], x, y);
+                addSong((Song) list[i], x, y);
             }
         }
         
