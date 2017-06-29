@@ -16,20 +16,19 @@ import student.TestCase;
 public class SongListTest extends TestCase
 {
     private SongList test;
-    private Song song1;
-    private Song song2;
-    private Song song3;
-    private Song song4;
-    private Song song5;
+    private SongList empty;
 
+    /**
+     * Set up test methods before they execute
+     */
     public void setUp()
     {
         test = new SongList();
-        song1 = new Song("ATitle", "AArtist", "1980", "AGenre", 0);
-        song2 = new Song("CTitle", "CArtist", "1990", "CGenre", 0);
-        song3 = new Song("BTitle", "BArtist", "1970", "BGenre", 0);
-        song4 = new Song("ETitle", "EArtist", "2000", "EGenre", 0);
-        song5 = new Song("DTitle", "DArtist", "1900", "DGenre", 0);
+        Song song1 = new Song("ATitle", "AArtist", "1980", "AGenre", 0);
+        Song song2 = new Song("CTitle", "CArtist", "1990", "CGenre", 0);
+        Song song3 = new Song("BTitle", "BArtist", "1970", "BGenre", 0);
+        Song song4 = new Song("ETitle", "EArtist", "2000", "EGenre", 0);
+        Song song5 = new Song("DTitle", "DArtist", "1900", "DGenre", 0);
         test.add(song1);
         test.add(song2);
         test.add(song3);
@@ -42,6 +41,10 @@ public class SongListTest extends TestCase
      */
     public void testSortTitle()
     {
+        empty = new SongList();
+        empty.sortTitle();
+        assertTrue(empty.isEmpty());
+        
         test.sortTitle();
         assertEquals("ATitle", test.getEntry(0).getTitle());
         assertEquals("BTitle", test.getEntry(1).getTitle());
@@ -55,6 +58,10 @@ public class SongListTest extends TestCase
      */
     public void testSortArtist()
     {
+        empty = new SongList();
+        empty.sortArtist();
+        assertTrue(empty.isEmpty());
+        
         test.sortArtist();
         assertEquals("AArtist", test.getEntry(0).getArtist());
         assertEquals("BArtist", test.getEntry(1).getArtist());
@@ -68,6 +75,10 @@ public class SongListTest extends TestCase
      */
     public void testSortGenre()
     {
+        empty = new SongList();
+        empty.sortGenre();
+        assertTrue(empty.isEmpty());
+        
         test.sortGenre();
         assertEquals("AGenre", test.getEntry(0).getGenre());
         assertEquals("BGenre", test.getEntry(1).getGenre());
@@ -81,6 +92,10 @@ public class SongListTest extends TestCase
      */
     public void testSortYear()
     {
+        empty = new SongList();
+        empty.sortYear();
+        assertTrue(empty.isEmpty());
+        
         test.sortYear();
         assertEquals("1900", test.getEntry(0).getYear());
         assertEquals("1970", test.getEntry(1).getYear());
