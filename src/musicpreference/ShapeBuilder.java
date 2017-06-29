@@ -3,6 +3,7 @@
  */
 package musicpreference;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ public class ShapeBuilder
     private Window window;
     private int[][] count;
     
+    public static final int C_WIDTH = 5;
+    public static final int C_HEIGHT = 40;
+    
     /**
      * Create a new ShapeBuilder object
      */
@@ -34,7 +38,11 @@ public class ShapeBuilder
             survey();
         }
         catch(FileNotFoundException e) {
+<<<<<<< HEAD
             System.err.println(e.getMessage());
+=======
+            System.exit(0);
+>>>>>>> 1b108313bcd98720d9dad44654cacf028052a2ee
         }
     }
     
@@ -97,25 +105,53 @@ public class ShapeBuilder
     
     private void addSong(Song song, int x, int y)
     {
+        TextShape subTitle = new TextShape(0, 0, song.getArtist());
+        subTitle.moveTo(x + C_WIDTH/2 - subTitle.getWidth()/2, y - subTitle.getHeight());
+        window.addShape(subTitle);
+        
         TextShape title = new TextShape(0, 0, song.getTitle());
         window.addShape(title);
-        title.moveTo(x + DisplayWindow.C_WIDTH/2 - DisplayWindow.T_WIDTH/2, y + DisplayWindow.T_HEIGHT);
+        title.moveTo(x + C_WIDTH/2 - title.getHeight()/2, 
+                     y + subTitle.getHeight() + title.getHeight());
         
+        int i =0;
         for (Hobby hobby : Hobby.values())
         {
-            int i = 0;
             double length = getHeardRatio(hobby, song)*Bar.MAX_LENGTH;
             Bar bar = new Bar((int)length);
             bar.moveTo(x - (int)length, y + i*Bar.HEIGHT);
+            if (hobby == Hobby.READ){
+                bar.setBackgroundColor(Color.MAGENTA);
+            }
+            else if (hobby == Hobby.ART){
+                bar.setBackgroundColor(Color.BLUE);
+            }
+            else if (hobby == Hobby.SPORTS){
+                bar.setBackgroundColor(Color.YELLOW);
+            }
+            else {
+                bar.setBackgroundColor(Color.GREEN);
+            }
             window.addShape(bar); 
             i++;
         }
         for (Hobby hobby : Hobby.values())
         {
-            int i = 0;
             double length = getLikeRatio(hobby, song)*Bar.MAX_LENGTH;
             Bar bar = new Bar((int)length);
             bar.moveTo(x + DisplayWindow.C_WIDTH, y + i*Bar.HEIGHT);
+            if (hobby == Hobby.READ){
+                bar.setBackgroundColor(Color.MAGENTA);
+            }
+            else if (hobby == Hobby.ART){
+                bar.setBackgroundColor(Color.BLUE);
+            }
+            else if (hobby == Hobby.SPORTS){
+                bar.setBackgroundColor(Color.YELLOW);
+            }
+            else {
+                bar.setBackgroundColor(Color.GREEN);
+            }
             window.addShape(bar);
             i++;
         }
@@ -124,7 +160,43 @@ public class ShapeBuilder
     
     public void addAll(int index)
     {
+<<<<<<< HEAD
         Object[] list = songList.toArray();
+=======
+        int legendX = 5*window.getWidth()/6;
+        int legendY = window.getHeight() / 2;
+        TextShape title = new TextShape(legendX, legendY, "Hobby Legend");
+        int height = title.getHeight();
+        TextShape hobby1 = new TextShape(legendX, legendY+height, "Read", Color.MAGENTA);
+        TextShape hobby2 = new TextShape(legendX, legendY+(2*height), "Art", Color.BLUE);
+        TextShape hobby3 = new TextShape(legendX, legendY+(3*height), "Art", Color.YELLOW);
+        TextShape hobby4 = new TextShape(legendX, legendY+(4*height), "Art", Color.GREEN);
+        TextShape exTitle = new TextShape(legendX, legendY+(5*height), "Song Title");
+        TextShape bLine = new TextShape(legendX, legendY+(6*height), "Heard");
+        Shape exBar = new Shape(legendX + bLine.getWidth() + 2, legendY+(6*height), C_WIDTH, C_HEIGHT/2, Color.BLACK);
+        TextShape bLine2 = new TextShape(legendX + bLine.getWidth() + exBar.getWidth() + 4,
+                legendY + (6*height), "Likes");
+        exTitle.move((title.getWidth()-exTitle.getWidth())/2, 0);
+        title.setBackgroundColor(Color.WHITE);
+        hobby1.setBackgroundColor(Color.WHITE);
+        hobby2.setBackgroundColor(Color.WHITE);
+        hobby3.setBackgroundColor(Color.WHITE);
+        hobby4.setBackgroundColor(Color.WHITE);
+        exTitle.setBackgroundColor(Color.WHITE);
+        bLine.setBackgroundColor(Color.WHITE);
+        bLine2.setBackgroundColor(Color.WHITE);
+        window.addShape(title);
+        window.addShape(hobby1);
+        window.addShape(hobby2);
+        window.addShape(hobby3);
+        window.addShape(hobby4);
+        window.addShape(exTitle);
+        window.addShape(bLine);
+        window.addShape(exBar);
+        window.addShape(bLine2);
+        
+        Song[] list = (Song[]) songList.toArray();
+>>>>>>> 1b108313bcd98720d9dad44654cacf028052a2ee
         int x;
         int y;
         for (int i = index; i < index + 9; i++)
@@ -166,7 +238,14 @@ public class ShapeBuilder
                     x = 5*window.getWidth()/6;
                     y = 3*window.getHeight()/4;
                 }
+<<<<<<< HEAD
                 addSong((Song) list[i], x, y);
+=======
+                
+                Shape cBar = new Shape(x, y, C_WIDTH, C_HEIGHT, Color.BLACK);
+                window.addShape(cBar);
+                addSong(list[i], x, y);
+>>>>>>> 1b108313bcd98720d9dad44654cacf028052a2ee
             }
         }
         
