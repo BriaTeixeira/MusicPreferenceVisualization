@@ -68,6 +68,14 @@ public class LinkedListTest extends TestCase
             e = exception;
         }
         assertTrue(e instanceof IndexOutOfBoundsException);
+        e = null;
+        try {
+            list.add(-1, "new");
+        } 
+        catch (Exception exception) {
+            e = exception;
+        }
+        assertTrue(e instanceof IndexOutOfBoundsException);
     }
     /**
      * test clear method
@@ -222,5 +230,7 @@ public class LinkedListTest extends TestCase
         list.clear();
         list.add("A");
         assertEquals("{A}", list.toString());
+        list.clear();
+        assertEquals("{}", list.toString());
     }
 }
