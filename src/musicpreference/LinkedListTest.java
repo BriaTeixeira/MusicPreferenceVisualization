@@ -7,6 +7,7 @@ import student.TestCase;
 
 /**
  * Test methods implemented in LinkedList
+ * 
  * @author a0053
  * @author fanyy94
  * @author bria96
@@ -14,7 +15,7 @@ import student.TestCase;
  */
 public class LinkedListTest extends TestCase
 {
-    LinkedList<String> list;
+    private LinkedList<String> list;
 
     /**
      * test setup
@@ -25,6 +26,7 @@ public class LinkedListTest extends TestCase
         list.add("1");
         list.add("2");
     }
+
     /**
      * test add newEntry method
      */
@@ -32,51 +34,61 @@ public class LinkedListTest extends TestCase
     {
         list.add("new");
         assertEquals("{1, 2, new}", list.toString());
-        //test exception
+        // test exception
         Exception e = null;
-        try {
+        try
+        {
             list.add(null);
-        } 
-        catch (Exception exception) {
+        }
+        catch (Exception exception)
+        {
             e = exception;
         }
         assertTrue(e instanceof IllegalArgumentException);
     }
+
     /**
      * test add to index
      */
     public void testAddIndex()
     {
-        list.add(1,"new");
+        list.add(1, "new");
         assertEquals("{1, new, 2}", list.toString());
         list.add(3, "new");
         assertEquals("{1, new, 2, new}", list.toString());
-        //test IllegalArgumentException
+        // test IllegalArgumentException
         Exception e = null;
-        try {
+        try
+        {
             list.add(3, null);
-        } 
-        catch (Exception exception) {
+        }
+        catch (Exception exception)
+        {
             e = exception;
         }
         assertTrue(e instanceof IllegalArgumentException);
         e = null;
-        try {
+        try
+        {
             list.add(50, "new");
-        } 
-        catch (Exception exception) {
+        }
+        catch (Exception exception)
+        {
             e = exception;
         }
         assertTrue(e instanceof IndexOutOfBoundsException);
         e = null;
-        try {
+        try
+        {
             list.add(-1, "new");
-        } 
-        catch (Exception exception) {
+        }
+        catch (Exception exception)
+        {
             e = exception;
         }
         assertTrue(e instanceof IndexOutOfBoundsException);
     }
+
     /**
      * test clear method
      */
@@ -86,6 +98,7 @@ public class LinkedListTest extends TestCase
         list.clear();
         assertTrue(list.isEmpty());
     }
+
     /**
      * test contains method
      */
@@ -94,30 +107,36 @@ public class LinkedListTest extends TestCase
         assertTrue(list.contains("1"));
         assertFalse(list.contains("new"));
     }
+
     /**
      * test getEntry with index
      */
     public void testGetEntry()
     {
         assertEquals("1", list.getEntry(0));
-        //test exception
+        // test exception
         Exception e = null;
-        try {
+        try
+        {
             list.getEntry(3);
-        } 
-        catch (Exception exception) {
+        }
+        catch (Exception exception)
+        {
             e = exception;
         }
         assertTrue(e instanceof IndexOutOfBoundsException);
         e = null;
-        try {
+        try
+        {
             list.getEntry(-1);
-        } 
-        catch (Exception exception) {
+        }
+        catch (Exception exception)
+        {
             e = exception;
         }
         assertTrue(e instanceof IndexOutOfBoundsException);
     }
+
     /**
      * testt getLength
      */
@@ -125,6 +144,7 @@ public class LinkedListTest extends TestCase
     {
         assertEquals(2, list.getLength());
     }
+
     /**
      * test isempty method
      */
@@ -134,6 +154,7 @@ public class LinkedListTest extends TestCase
         list.clear();
         assertTrue(list.isEmpty());
     }
+
     /**
      * test getLastIndexof
      */
@@ -144,31 +165,37 @@ public class LinkedListTest extends TestCase
         assertEquals(3, list.lastIndexOf("1"));
         assertEquals(-1, list.lastIndexOf("new"));
     }
+
     /**
      * test remove index method
      */
     public void testRemoveIndex()
     {
         assertEquals("2", list.remove(1));
-      //test exception
+        // test exception
         Exception e = null;
-        try {
+        try
+        {
             list.remove(50);
-        } 
-        catch (Exception exception) {
+        }
+        catch (Exception exception)
+        {
             e = exception;
         }
         assertTrue(e instanceof IndexOutOfBoundsException);
-      //test exception
+        // test exception
         e = null;
-        try {
+        try
+        {
             list.remove(-1);
-        } 
-        catch (Exception exception) {
+        }
+        catch (Exception exception)
+        {
             e = exception;
         }
         assertTrue(e instanceof IndexOutOfBoundsException);
     }
+
     /**
      * test remove first object in the list that equals.object
      */
@@ -177,6 +204,7 @@ public class LinkedListTest extends TestCase
         assertTrue(list.remove("1"));
         assertFalse(list.remove("new"));
     }
+
     /**
      * test toString method
      */
@@ -187,40 +215,47 @@ public class LinkedListTest extends TestCase
         list.remove(0);
         assertEquals("{}", list.toString());
     }
+
     /**
      * test replace method
      */
     public void testReplace()
     {
         assertEquals("1", list.replace(0, "0"));
-       //test IllegalArgumentException
+        // test IllegalArgumentException
         Exception e = null;
-        try {
+        try
+        {
             list.replace(0, null);
-        } 
-        catch (Exception exception) {
+        }
+        catch (Exception exception)
+        {
             e = exception;
         }
         assertTrue(e instanceof IllegalArgumentException);
-        //test IndexOutOfBoundsException
+        // test IndexOutOfBoundsException
         e = null;
-        try {
+        try
+        {
             list.replace(50, "new");
-        } 
-        catch (Exception exception) {
+        }
+        catch (Exception exception)
+        {
             e = exception;
         }
         assertTrue(e instanceof IndexOutOfBoundsException);
-      //test IndexOutOfBoundsException
         e = null;
-        try {
+        try
+        {
             list.replace(-1, "new");
-        } 
-        catch (Exception exception) {
+        }
+        catch (Exception exception)
+        {
             e = exception;
         }
         assertTrue(e instanceof IndexOutOfBoundsException);
     }
+
     /**
      * test swap method
      */
@@ -230,6 +265,7 @@ public class LinkedListTest extends TestCase
         list.swap(0, 2);
         assertEquals("{new, 2, 1}", list.toString());
     }
+
     /**
      * test toarray
      */
@@ -242,6 +278,7 @@ public class LinkedListTest extends TestCase
         assertEquals("A", array[0]);
         assertEquals("B", array[1]);
     }
+
     /**
      * test insertion sort
      */

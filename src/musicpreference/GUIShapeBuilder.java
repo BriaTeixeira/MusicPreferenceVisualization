@@ -2,6 +2,7 @@
  * 
  */
 package prj5;
+
 import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,21 +15,22 @@ import CS2114.Window;
 
 /**
  * Create the glyph charts and add them to the window.
+ * 
  * @author a0053
  * @author fanyy94
  * @author bria96
  * @version Jun 28, 2017
- *
+ * 
  */
 public class GUIShapeBuilder
 {
     private SongList songList;
     private Window window;
     private int[][] count;
-    
+
     public static final int C_WIDTH = 5;
     public static final int C_HEIGHT = 40;
-    
+
     /**
      * Create a new ShapeBuilder object
      */
@@ -36,145 +38,182 @@ public class GUIShapeBuilder
     {
         songList = new SongList();
         this.window = window;
-        try {
+        try
+        {
             songs(name1);
             survey(name2);
         }
-        catch(FileNotFoundException e) {
+        catch (FileNotFoundException e)
+        {
 
             System.err.println(e.getMessage());
         }
     }
-    
+
     /**
-     * Get the ratio of those who have heard the song to 
-     * the number of students counted for the survey.
-     * @param hobby Which hobby the data should contribute to
-     * @param song The song we are getting the ratio for
+     * Get the ratio of those who have heard the song to the number of students
+     * counted for the survey.
+     * 
+     * @param hobby
+     *            Which hobby the data should contribute to
+     * @param song
+     *            The song we are getting the ratio for
      */
     private double getHeardRatio(HobbyEnum hobby, Song song)
     {
         int row;
-        if (hobby == HobbyEnum.READ) {
+        if (hobby == HobbyEnum.READ)
+        {
             row = 0;
         }
-        else if (hobby == HobbyEnum.ART){
+        else if (hobby == HobbyEnum.ART)
+        {
             row = 4;
         }
-        else if (hobby == HobbyEnum.SPORTS){
+        else if (hobby == HobbyEnum.SPORTS)
+        {
             row = 8;
         }
-        else {
+        else
+        {
             row = 12;
         }
-        return (double)count[row][song.getCol()] / 
-            (count[row][song.getCol()] + count[row + 1][song.getCol()]);
+        return (double) count[row][song.getCol()]
+                / (count[row][song.getCol()] + count[row + 1][song.getCol()]);
     }
-    
+
     /**
-     * Get the ratio of those who like the song to 
-     * the number of students counted for the survey.
-     * @param hobby Which hobby the data should contribute to
-     * @param song The song we are getting the ratio for
+     * Get the ratio of those who like the song to the number of students
+     * counted for the survey.
+     * 
+     * @param hobby
+     *            Which hobby the data should contribute to
+     * @param song
+     *            The song we are getting the ratio for
      */
     private double getLikeRatio(HobbyEnum hobby, Song song)
     {
         int row;
-        if (hobby == HobbyEnum.READ) {
+        if (hobby == HobbyEnum.READ)
+        {
             row = 0;
         }
-        else if (hobby == HobbyEnum.ART){
+        else if (hobby == HobbyEnum.ART)
+        {
             row = 4;
         }
-        else if (hobby == HobbyEnum.SPORTS){
+        else if (hobby == HobbyEnum.SPORTS)
+        {
             row = 8;
         }
-        else {
+        else
+        {
             row = 12;
         }
-        return (double)count[row+2][song.getCol()] / 
-            (count[row+2][song.getCol()] + count[row + 3][song.getCol()]);
-        
+        return (double) count[row + 2][song.getCol()]
+                / (count[row + 2][song.getCol()] + count[row + 3][song.getCol()]);
+
     }
-    
+
     private void addSong(Song song, int x, int y)
     {
         int gap = 2;
         TextShape subTitle = new TextShape(0, 0, song.getArtist());
-        subTitle.moveTo(x + C_WIDTH/2 - subTitle.getWidth()/2, y - subTitle.getHeight() - gap);
+        subTitle.moveTo(x + C_WIDTH / 2 - subTitle.getWidth() / 2,
+                y - subTitle.getHeight() - gap);
         subTitle.setBackgroundColor(Color.WHITE);
         window.addShape(subTitle);
-        
+
         TextShape title = new TextShape(0, 0, song.getTitle());
-        title.moveTo(x + C_WIDTH/2 - title.getWidth()/2, 
-                     y - subTitle.getHeight() - title.getHeight() - gap);
+        title.moveTo(x + C_WIDTH / 2 - title.getWidth() / 2,
+                y - subTitle.getHeight() - title.getHeight() - gap);
         title.setBackgroundColor(Color.WHITE);
         window.addShape(title);
-        
-        int i =0;
+
+        int i = 0;
         for (HobbyEnum hobby : HobbyEnum.values())
         {
-            double length = getHeardRatio(hobby, song)*Bar.MAX_LENGTH;
-            Bar bar = new Bar((int)length);
-            bar.moveTo(x - (int)length, y + i*Bar.HEIGHT);
-            if (hobby == HobbyEnum.READ){
+            double length = getHeardRatio(hobby, song) * Bar.MAX_LENGTH;
+            Bar bar = new Bar((int) length);
+            bar.moveTo(x - (int) length, y + i * Bar.HEIGHT);
+            if (hobby == HobbyEnum.READ)
+            {
                 bar.setBackgroundColor(Color.MAGENTA);
             }
-            else if (hobby == HobbyEnum.ART){
+            else if (hobby == HobbyEnum.ART)
+            {
                 bar.setBackgroundColor(Color.BLUE);
             }
-            else if (hobby == HobbyEnum.SPORTS){
+            else if (hobby == HobbyEnum.SPORTS)
+            {
                 bar.setBackgroundColor(Color.YELLOW);
             }
-            else {
-                bar.setBackgroundColor(Color.GREEN);
-            }
-            window.addShape(bar); 
-            i++;
-        }
-        
-        i = 0;
-        for (HobbyEnum hobby : HobbyEnum.values())
-        {
-            double length = getLikeRatio(hobby, song)*Bar.MAX_LENGTH;
-            Bar bar = new Bar((int)length);
-            bar.moveTo(x + C_WIDTH, y + i*Bar.HEIGHT);
-            if (hobby == HobbyEnum.READ){
-                bar.setBackgroundColor(Color.MAGENTA);
-            }
-            else if (hobby == HobbyEnum.ART){
-                bar.setBackgroundColor(Color.BLUE);
-            }
-            else if (hobby == HobbyEnum.SPORTS){
-                bar.setBackgroundColor(Color.YELLOW);
-            }
-            else {
+            else
+            {
                 bar.setBackgroundColor(Color.GREEN);
             }
             window.addShape(bar);
             i++;
         }
-        
+
+        i = 0;
+        for (HobbyEnum hobby : HobbyEnum.values())
+        {
+            double length = getLikeRatio(hobby, song) * Bar.MAX_LENGTH;
+            Bar bar = new Bar((int) length);
+            bar.moveTo(x + C_WIDTH, y + i * Bar.HEIGHT);
+            if (hobby == HobbyEnum.READ)
+            {
+                bar.setBackgroundColor(Color.MAGENTA);
+            }
+            else if (hobby == HobbyEnum.ART)
+            {
+                bar.setBackgroundColor(Color.BLUE);
+            }
+            else if (hobby == HobbyEnum.SPORTS)
+            {
+                bar.setBackgroundColor(Color.YELLOW);
+            }
+            else
+            {
+                bar.setBackgroundColor(Color.GREEN);
+            }
+            window.addShape(bar);
+            i++;
+        }
+
     }
-    
+
     public void addAll(int index)
     {
 
-        
-        int legendX = 6*window.getWidth()/7;
+        int legendX = 6 * window.getWidth() / 7;
         int legendY = window.getHeight() / 2;
         TextShape title = new TextShape(legendX, legendY, "Hobby Legend");
         int height = title.getHeight();
-        TextShape hobby1 = new TextShape(legendX, legendY+height, "Read", Color.MAGENTA);
-        TextShape hobby2 = new TextShape(legendX, legendY+(2*height), "Art", Color.BLUE);
-        TextShape hobby3 = new TextShape(legendX, legendY+(3*height), "Art", Color.YELLOW);
-        TextShape hobby4 = new TextShape(legendX, legendY+(4*height), "Art", Color.GREEN);
-        TextShape exTitle = new TextShape(legendX, legendY+(5*height), "Song Title");
-        TextShape bLine = new TextShape(legendX, legendY+(6*height), "Heard");
-        Shape exBar = new Shape(legendX + bLine.getWidth() + 2, legendY+(6*height), C_WIDTH, C_HEIGHT/2, Color.BLACK);
-        TextShape bLine2 = new TextShape(legendX + bLine.getWidth() + exBar.getWidth() + 4,
-                legendY + (6*height), "Likes");
-        exTitle.move((title.getWidth()-exTitle.getWidth())/2, 0);
+        TextShape hobby1 =
+                new TextShape(legendX, legendY + height, "Read", Color.MAGENTA);
+        TextShape hobby2 =
+                new TextShape(legendX, legendY + (2 * height), "Art",
+                        Color.BLUE);
+        TextShape hobby3 =
+                new TextShape(legendX, legendY + (3 * height), "Art",
+                        Color.YELLOW);
+        TextShape hobby4 =
+                new TextShape(legendX, legendY + (4 * height), "Art",
+                        Color.GREEN);
+        TextShape exTitle =
+                new TextShape(legendX, legendY + (5 * height), "Song Title");
+        TextShape bLine =
+                new TextShape(legendX, legendY + (6 * height), "Heard");
+        Shape exBar =
+                new Shape(legendX + bLine.getWidth() + 2, legendY
+                        + (6 * height), C_WIDTH, C_HEIGHT / 2, Color.BLACK);
+        TextShape bLine2 =
+                new TextShape(
+                        legendX + bLine.getWidth() + exBar.getWidth() + 4,
+                        legendY + (6 * height), "Likes");
+        exTitle.move((title.getWidth() - exTitle.getWidth()) / 2, 0);
         title.setBackgroundColor(Color.WHITE);
         hobby1.setBackgroundColor(Color.WHITE);
         hobby2.setBackgroundColor(Color.WHITE);
@@ -192,61 +231,70 @@ public class GUIShapeBuilder
         window.addShape(bLine);
         window.addShape(exBar);
         window.addShape(bLine2);
-        
+
         Object[] list = songList.toArray();
         int x;
         int y;
         for (int i = index; i < index + 9; i++)
         {
-            if (i<list.length) {
-                if (i%9 == 0) {
+            if (i < list.length)
+            {
+                if (i % 9 == 0)
+                {
                     x = window.getWidth() / 7;
                     y = window.getHeight() / 4;
                 }
-                else if (i%9 == 1) {
-                    x = 3*window.getWidth()/7;
-                    y = window.getHeight()/4;
+                else if (i % 9 == 1)
+                {
+                    x = 3 * window.getWidth() / 7;
+                    y = window.getHeight() / 4;
                 }
-                else if (i%9 == 2) {
-                    x = 5*window.getWidth()/7;
-                    y = window.getHeight()/4;
+                else if (i % 9 == 2)
+                {
+                    x = 5 * window.getWidth() / 7;
+                    y = window.getHeight() / 4;
                 }
-                else if (i%9 == 3) {
-                    x = window.getWidth()/7;
-                    y = 2*window.getHeight()/4;
+                else if (i % 9 == 3)
+                {
+                    x = window.getWidth() / 7;
+                    y = 2 * window.getHeight() / 4;
                 }
-                else if (i%9 == 4) {
-                    x = 3*window.getWidth()/7;
-                    y = 2*window.getHeight()/4;
+                else if (i % 9 == 4)
+                {
+                    x = 3 * window.getWidth() / 7;
+                    y = 2 * window.getHeight() / 4;
                 }
-                else if (i%9 == 5) {
-                    x = 5*window.getWidth()/7;
-                    y = 2*window.getHeight()/4;
+                else if (i % 9 == 5)
+                {
+                    x = 5 * window.getWidth() / 7;
+                    y = 2 * window.getHeight() / 4;
                 }
-                else if (i%9 == 6) {
-                    x = window.getWidth()/7;
-                    y = 3*window.getHeight()/4;
+                else if (i % 9 == 6)
+                {
+                    x = window.getWidth() / 7;
+                    y = 3 * window.getHeight() / 4;
                 }
-                else if (i%9 == 7) {
-                    x = 3*window.getWidth()/7;
-                    y = 3*window.getHeight()/4;
+                else if (i % 9 == 7)
+                {
+                    x = 3 * window.getWidth() / 7;
+                    y = 3 * window.getHeight() / 4;
                 }
-                else {
-                    x = 5*window.getWidth()/7;
-                    y = 3*window.getHeight()/4;
+                else
+                {
+                    x = 5 * window.getWidth() / 7;
+                    y = 3 * window.getHeight() / 4;
                 }
                 addSong((Song) list[i], x, y);
 
-                
                 Shape cBar = new Shape(x, y, C_WIDTH, C_HEIGHT, Color.BLACK);
                 window.addShape(cBar);
                 addSong((Song) list[i], x, y);
 
             }
         }
-        
+
     }
-    
+
     /**
      * Get the SongList object stored in this class
      */
@@ -254,7 +302,7 @@ public class GUIShapeBuilder
     {
         return songList;
     }
-    
+
     /**
      * Provides the ability to set the order of the list
      */
@@ -262,7 +310,7 @@ public class GUIShapeBuilder
     {
         songList = list;
     }
-    
+
     private void songs(String name) throws FileNotFoundException
     {
         File file = new File(name);
@@ -270,21 +318,21 @@ public class GUIShapeBuilder
         Scanner line = null;
         boolean proceed;
         int column = 0;
-        
+
         scanner.nextLine();
-    
+
         while (scanner.hasNextLine())
         {
             proceed = true;
             line = new Scanner(scanner.nextLine());
             line.useDelimiter(",");
             ArrayList<String> temp = new ArrayList<String>();
-    
+
             while (line.hasNext())
-            {    
+            {
                 temp.add(line.next());
             }
-            
+
             for (String string : temp)
             {
                 if (string.trim().isEmpty())
@@ -292,19 +340,21 @@ public class GUIShapeBuilder
                     proceed = false;
                 }
             }
-    
+
             if (temp.size() == 4 && proceed)
             {
-                Song song = new Song(temp.get(0), temp.get(1), temp.get(2), temp.get(3), column);
+                Song song =
+                        new Song(temp.get(0), temp.get(1), temp.get(2),
+                                temp.get(3), column);
                 songList.add(song);
                 column++;
             }
         }
-        count = new int[16][column+1];
+        count = new int[16][column + 1];
         scanner.close();
         line.close();
     }
-    
+
     private void survey(String name) throws FileNotFoundException
     {
         File file = new File(name);
@@ -316,7 +366,7 @@ public class GUIShapeBuilder
         int row = 0;
         boolean proceed;
         String hobby;
-        
+
         scanner.nextLine();
         scanner.nextLine();
 
@@ -343,29 +393,33 @@ public class GUIShapeBuilder
             if (proceed)
             {
                 hobby = temp.get(4);
-                if (hobby.equalsIgnoreCase("reading")) {
+                if (hobby.equalsIgnoreCase("reading"))
+                {
                     row = 0;
                 }
-                else if (hobby.equalsIgnoreCase("art")) {
+                else if (hobby.equalsIgnoreCase("art"))
+                {
                     row = 4;
                 }
-                else if (hobby.equalsIgnoreCase("sports")) {
+                else if (hobby.equalsIgnoreCase("sports"))
+                {
                     row = 8;
                 }
-                else if (hobby.equalsIgnoreCase("music")) {
+                else if (hobby.equalsIgnoreCase("music"))
+                {
                     row = 12;
                 }
-                
+
                 column = 0;
                 inner = 0;
-                
+
                 while (line.hasNext())
                 {
                     String string = line.next();
                     if (string.equalsIgnoreCase("yes"))
                     {
                         count[row][column]++; // indices of the song class
-                                                   // static array
+                                              // static array
                     }
                     if (string.equalsIgnoreCase("no"))
                     {
@@ -377,7 +431,7 @@ public class GUIShapeBuilder
                     if (string.equalsIgnoreCase("yes"))
                     {
                         count[row + 2][column]++; // indices of the song
-                                                       // class static array
+                                                  // class static array
                     }
                     if (string.equalsIgnoreCase("no"))
                     {
@@ -393,5 +447,5 @@ public class GUIShapeBuilder
         }
         scanner.close();
         line.close();
-     }
+    }
 }

@@ -205,7 +205,7 @@ public class LinkedList<T extends Comparable<T>> implements ListInterface<T>
      */
     private Node<T> getNodeAtIndex(int index)
     {
-        if (index < 0 || getLength() <= index)
+        if (index < 0 || getLength() < index)
         {
             throw new IndexOutOfBoundsException();
         }
@@ -305,7 +305,7 @@ public class LinkedList<T extends Comparable<T>> implements ListInterface<T>
     @Override
     public T replace(int index, T newEntry)
     {
-        if (index < 0 || index > length -1 )
+        if (index < 0 || index > length - 1 )
         {
             throw new IndexOutOfBoundsException();
         }

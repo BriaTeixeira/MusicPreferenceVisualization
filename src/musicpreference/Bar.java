@@ -14,7 +14,13 @@ import CS2114.Shape;
  */
 public class Bar extends Shape
 {
+    /**
+     * The max length of the box
+     */
     public static final int MAX_LENGTH = 100;
+    /**
+     * The height of a box
+     */
     public static final int HEIGHT = 10;
     /**
      * Create a new Bar shape.

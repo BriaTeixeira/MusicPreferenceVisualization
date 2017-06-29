@@ -1,13 +1,13 @@
 package prj5;
 
-
 /**
  * Displays the window containing survey results.
+ * 
  * @author a0053
  * @author fanyy94
  * @author bria96
  * @version Jun 28, 2017
- *
+ * 
  */
 public class Input
 {
