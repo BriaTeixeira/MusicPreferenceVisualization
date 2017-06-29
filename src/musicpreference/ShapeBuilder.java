@@ -138,7 +138,7 @@ public class ShapeBuilder
         {
             double length = getLikeRatio(hobby, song)*Bar.MAX_LENGTH;
             Bar bar = new Bar((int)length);
-            bar.moveTo(x + DisplayWindow.C_WIDTH, y + i*Bar.HEIGHT);
+            bar.moveTo(x + C_WIDTH, y + i*Bar.HEIGHT);
             if (hobby == Hobby.READ){
                 bar.setBackgroundColor(Color.MAGENTA);
             }
