@@ -21,10 +21,10 @@ public class Input
         String file1 = "SongList2017S.csv";
         String file2 = "MusicSurveyData2017S.csv";
 
-        if (args.length == 2)
+        if (args.length == 3)
         {
-            file1 = args[0];
-            file2 = args[1];
+            file1 = args[1];
+            file2 = args[2];
         }
 
         GUIDisplayWindow display = new GUIDisplayWindow(file1, file2);
