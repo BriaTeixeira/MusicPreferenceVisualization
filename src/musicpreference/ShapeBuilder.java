@@ -38,11 +38,8 @@ public class ShapeBuilder
             survey();
         }
         catch(FileNotFoundException e) {
-<<<<<<< HEAD
+
             System.err.println(e.getMessage());
-=======
-            System.exit(0);
->>>>>>> 1b108313bcd98720d9dad44654cacf028052a2ee
         }
     }
     
@@ -160,9 +157,8 @@ public class ShapeBuilder
     
     public void addAll(int index)
     {
-<<<<<<< HEAD
-        Object[] list = songList.toArray();
-=======
+
+        
         int legendX = 5*window.getWidth()/6;
         int legendY = window.getHeight() / 2;
         TextShape title = new TextShape(legendX, legendY, "Hobby Legend");
@@ -195,8 +191,7 @@ public class ShapeBuilder
         window.addShape(exBar);
         window.addShape(bLine2);
         
-        Song[] list = (Song[]) songList.toArray();
->>>>>>> 1b108313bcd98720d9dad44654cacf028052a2ee
+        Object[] list = songList.toArray();
         int x;
         int y;
         for (int i = index; i < index + 9; i++)
@@ -238,14 +233,13 @@ public class ShapeBuilder
                     x = 5*window.getWidth()/6;
                     y = 3*window.getHeight()/4;
                 }
-<<<<<<< HEAD
                 addSong((Song) list[i], x, y);
-=======
+
                 
                 Shape cBar = new Shape(x, y, C_WIDTH, C_HEIGHT, Color.BLACK);
                 window.addShape(cBar);
-                addSong(list[i], x, y);
->>>>>>> 1b108313bcd98720d9dad44654cacf028052a2ee
+                addSong((Song) list[i], x, y);
+
             }
         }
         
