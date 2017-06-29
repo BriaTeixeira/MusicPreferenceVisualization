@@ -102,14 +102,15 @@ public class ShapeBuilder
     
     private void addSong(Song song, int x, int y)
     {
+        int gap = 2;
         TextShape subTitle = new TextShape(0, 0, song.getArtist());
-        subTitle.moveTo(x + C_WIDTH/2 - subTitle.getWidth()/2, y - subTitle.getHeight());
+        subTitle.moveTo(x + C_WIDTH/2 - subTitle.getWidth()/2, y - subTitle.getHeight() - gap);
         subTitle.setBackgroundColor(Color.WHITE);
         window.addShape(subTitle);
         
         TextShape title = new TextShape(0, 0, song.getTitle());
         title.moveTo(x + C_WIDTH/2 - title.getWidth()/2, 
-                     y - subTitle.getHeight() - title.getHeight());
+                     y - subTitle.getHeight() - title.getHeight() - gap);
         title.setBackgroundColor(Color.WHITE);
         window.addShape(title);
         
