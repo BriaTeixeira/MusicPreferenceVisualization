@@ -104,12 +104,14 @@ public class ShapeBuilder
     {
         TextShape subTitle = new TextShape(0, 0, song.getArtist());
         subTitle.moveTo(x + C_WIDTH/2 - subTitle.getWidth()/2, y - subTitle.getHeight());
+        subTitle.setBackgroundColor(Color.WHITE);
         window.addShape(subTitle);
         
         TextShape title = new TextShape(0, 0, song.getTitle());
-        window.addShape(title);
         title.moveTo(x + C_WIDTH/2 - title.getHeight()/2, 
-                     y + subTitle.getHeight() + title.getHeight());
+                     y - subTitle.getHeight() - title.getHeight());
+        title.setBackgroundColor(Color.WHITE);
+        window.addShape(title);
         
         int i =0;
         for (Hobby hobby : Hobby.values())
