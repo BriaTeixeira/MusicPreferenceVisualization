@@ -1,10 +1,14 @@
 /**
  * 
  */
-package musicpreference;
+package prj5;
 
 /**
- * @author Bria
+ * Create a list of song objects
+ * @author a0053
+ * @author fanyy94
+ * @author bria96
+ * @version Jun 28, 2017
  *
  */
 public class SongList extends LinkedList<Song>
@@ -16,6 +20,7 @@ public class SongList extends LinkedList<Song>
     {
         super();
     }
+    
     /**
      * toarray method
      * @return object array which contains song object
@@ -30,6 +35,7 @@ public class SongList extends LinkedList<Song>
         }
         return array;
     }
+
     /**
      * sort by title
      */

@@ -1,11 +1,15 @@
 /**
  * 
  */
-package musicpreference;
+package prj5;
 import CS2114.Shape;
 
 /**
- * @author Bria
+ * Create a bar object that represents data
+ * @author a0053
+ * @author fanyy94
+ * @author bria96
+ * @version Jun 28, 2017
  *
  */
 public class Bar extends Shape

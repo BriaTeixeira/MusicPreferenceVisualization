@@ -1,12 +1,15 @@
 /**
  * 
  */
-package musicpreference;
+package prj5;
 import student.TestCase;
 
 /**
  * Test the construction of a Bar object.
- * @author Bria
+ * @author a0053
+ * @author fanyy94
+ * @author bria96
+ * @version Jun 28, 2017
  *
  */
 public class BarTest extends TestCase

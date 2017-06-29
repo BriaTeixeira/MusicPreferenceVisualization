@@ -1,13 +1,16 @@
 /**
  * 
  */
-package musicpreference;
+package prj5;
 
 /**
  * Store the information specific to different songs as well as provide
  * the functionality to get specific information and compare songs to
  * each other.
- * @author Bria
+ * @author a0053
+ * @author fanyy94
+ * @author bria96
+ * @version Jun 28, 2017
  *
  */
 public class Song implements Comparable<Song>

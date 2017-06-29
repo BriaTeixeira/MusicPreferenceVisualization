@@ -1,13 +1,16 @@
 /**
  * 
  */
-package musicpreference;
+package prj5;
 
 import student.TestCase;
 
 /**
- * @author Yiyang Fan
- * @version Jun 26, 2017
+ * Test methods implemented in SongList
+ * @author a0053
+ * @author fanyy94
+ * @author bria96
+ * @version Jun 28, 2017
  */
 public class SongListTest extends TestCase
 {
@@ -57,7 +60,7 @@ public class SongListTest extends TestCase
         assertEquals("EArtist", test.getEntry(4).getArtist());
     }
     /**
-     * test sord by Genre
+     * test sort by Genre
      */
     public void testSortGenre()
     {
@@ -80,6 +83,7 @@ public class SongListTest extends TestCase
         assertEquals("1990", test.getEntry(3).getYear());
         assertEquals("2000", test.getEntry(4).getYear());
     }
+    
     /**
      * test toArray method
      */

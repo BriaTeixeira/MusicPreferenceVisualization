@@ -1,7 +1,20 @@
-package musicpreference;
-
+/**
+ * 
+ */
+package prj5;
 
 import list.ListInterface;
+
+/**
+ * Implement the interface ListInterface to create a
+ * linked list
+ * @author a0053
+ * @author fanyy94
+ * @author bria96
+ * @version Jun 28, 2017
+ *
+ * @param <T>
+ */
 
 public class LinkedList<T extends Comparable<T>> implements ListInterface<T>
 {

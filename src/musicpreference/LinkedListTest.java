@@ -1,13 +1,16 @@
 /**
  * 
  */
-package project5;
+package prj5;
 
 import student.TestCase;
 
 /**
- * @author Yiyang Fan
- * @version Jun 22, 2017
+ * Test methods implemented in LinkedList
+ * @author a0053
+ * @author fanyy94
+ * @author bria96
+ * @version Jun 28, 2017
  */
 public class LinkedListTest extends TestCase
 {
