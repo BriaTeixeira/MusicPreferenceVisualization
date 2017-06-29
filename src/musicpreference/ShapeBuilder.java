@@ -108,7 +108,7 @@ public class ShapeBuilder
         window.addShape(subTitle);
         
         TextShape title = new TextShape(0, 0, song.getTitle());
-        title.moveTo(x + C_WIDTH/2 - title.getHeight()/2, 
+        title.moveTo(x + C_WIDTH/2 - title.getWidth()/2, 
                      y - subTitle.getHeight() - title.getHeight());
         title.setBackgroundColor(Color.WHITE);
         window.addShape(title);
