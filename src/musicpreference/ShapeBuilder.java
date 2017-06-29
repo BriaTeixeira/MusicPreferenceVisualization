@@ -95,7 +95,7 @@ public class ShapeBuilder
         else {
             row = 12;
         }
-        return count[row+2][song.getCol()] / 
+        return (double)count[row+2][song.getCol()] / 
             (count[row+2][song.getCol()] + count[row + 3][song.getCol()]);
         
     }
