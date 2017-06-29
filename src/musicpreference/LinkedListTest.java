@@ -109,6 +109,14 @@ public class LinkedListTest extends TestCase
             e = exception;
         }
         assertTrue(e instanceof IndexOutOfBoundsException);
+        e = null;
+        try {
+            list.getEntry(-1);
+        } 
+        catch (Exception exception) {
+            e = exception;
+        }
+        assertTrue(e instanceof IndexOutOfBoundsException);
     }
     /**
      * testt getLength
@@ -146,6 +154,15 @@ public class LinkedListTest extends TestCase
         Exception e = null;
         try {
             list.remove(50);
+        } 
+        catch (Exception exception) {
+            e = exception;
+        }
+        assertTrue(e instanceof IndexOutOfBoundsException);
+      //test exception
+        e = null;
+        try {
+            list.remove(-1);
         } 
         catch (Exception exception) {
             e = exception;
@@ -194,6 +211,15 @@ public class LinkedListTest extends TestCase
             e = exception;
         }
         assertTrue(e instanceof IndexOutOfBoundsException);
+      //test IndexOutOfBoundsException
+        e = null;
+        try {
+            list.replace(-1, "new");
+        } 
+        catch (Exception exception) {
+            e = exception;
+        }
+        assertTrue(e instanceof IndexOutOfBoundsException);
     }
     /**
      * test swap method
@@ -229,8 +255,10 @@ public class LinkedListTest extends TestCase
         assertEquals("{A, B, C}", list.toString());
         list.clear();
         list.add("A");
+        list.insertSort();
         assertEquals("{A}", list.toString());
         list.clear();
+        list.insertSort();
         assertEquals("{}", list.toString());
     }
 }
